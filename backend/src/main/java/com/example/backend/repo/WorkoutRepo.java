@@ -10,4 +10,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WorkoutRepo {
 
+    private final List<Workout> workoutList;
+
+    public List<Workout> listAllWorkouts(){
+        return workoutList;
+    }
+
+
+
 }
