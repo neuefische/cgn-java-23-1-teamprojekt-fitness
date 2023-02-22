@@ -1,4 +1,6 @@
 package com.example.backend.service;
+import com.example.backend.repo.WorkoutRepo;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import com.example.backend.model.Workout;
@@ -12,4 +14,17 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class WorkoutService {
+
+
+
+    private final  WorkoutRepo workoutrepo;
+
+    public List<Workout> listAllWorkouts(){
+    return workoutrepo.listAllWorkouts();
+
+    }
+
+
+
+
 }
