@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="152aa5e7-5b77-428c-894f-4dce8c28056d" name="Changes" comment="Add build CI">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+    <list default="true" id="152aa5e7-5b77-428c-894f-4dce8c28056d" name="Changes" comment="Add senar-backend">
+      <change afterPath="$PROJECT_DIR$/.github/worflows/sonar-frontend.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677066151030</updated>
-      <workItem from="1677066157036" duration="4479000" />
+      <workItem from="1677066157036" duration="4880000" />
     </task>
     <task id="LOCAL-00001" summary="Setup Project">
       <created>1677066773801</created>
@@ -103,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677069909871</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add senar-backend">
+      <created>1677073481628</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677073481628</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +145,7 @@
     <MESSAGE value="Setup Project" />
     <MESSAGE value="Add gitignore" />
     <MESSAGE value="Add build CI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add build CI" />
+    <MESSAGE value="Add senar-backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add senar-backend" />
   </component>
 </project>
