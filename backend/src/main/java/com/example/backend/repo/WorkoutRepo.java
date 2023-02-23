@@ -17,4 +17,11 @@ public class WorkoutRepo {
     public List<Workout> listAllWorkouts() {
         return workoutList;
     }
+
+
+    public Workout addWorkout(Workout workout) {
+        workoutList.add(workout);
+        return workout;
+    }
+
 }
