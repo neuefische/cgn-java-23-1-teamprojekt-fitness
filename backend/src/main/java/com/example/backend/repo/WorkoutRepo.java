@@ -17,4 +17,8 @@ public class WorkoutRepo {
     public List<Workout> listAllWorkouts() {
         return workoutList;
     }
+
+    public Workout updateWorkout(){
+
+    }
 }
