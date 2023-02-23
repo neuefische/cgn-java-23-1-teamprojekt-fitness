@@ -21,6 +21,9 @@ public class WorkoutService {
 
     public List<Workout> listAllWorkouts() {
         return workoutrepo.listAllWorkouts();
+    }
 
+    public Workout addWorkout(Workout workout) {
+        return workoutrepo.addWorkout(workout);
     }
 }

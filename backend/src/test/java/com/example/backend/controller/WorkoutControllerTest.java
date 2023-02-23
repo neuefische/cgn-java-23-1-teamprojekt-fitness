@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.DirtiesContext;
@@ -43,6 +44,29 @@ class WorkoutControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/workout"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
+    }
+
+    @Test
+    @DirtiesContext
+    void checkAddWorkout() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/workout").contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "id": "1",
+                        "description": "Mit dem Fahrrad fahren durch den Wald",
+                        "title": "Fahrrad fahren"
+                        }
+                        """))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        """
+                        {
+                        "id": "1",
+                        "description": "Mit dem Fahrrad fahren durch den Wald",
+                        "title": "Fahrrad fahren"
+                        }
+                        """)
+                );
     }
 
 

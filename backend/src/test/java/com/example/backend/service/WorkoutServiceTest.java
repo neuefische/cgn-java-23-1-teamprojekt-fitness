@@ -41,6 +41,22 @@ class WorkoutServiceTest {
 
     }
 
+    @Test
+    void checkAddWorkout() {
+
+        //GIVEN
+        Workout expectedWorkout = new Workout("Joggen gehen", "1", "Joggen");
+        when(workoutRepo.addWorkout(expectedWorkout)).thenReturn(expectedWorkout);
+
+        //WHEN
+        Workout workout = workoutService.addWorkout(expectedWorkout);
+
+        //THEN
+        verify(workoutRepo).addWorkout(expectedWorkout);
+        assertEquals(expectedWorkout, workout);
+
+    }
+
 }
 
 
