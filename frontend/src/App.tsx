@@ -1,26 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Workout} from "./model/Workout";
+import axios from "axios";
+import Gallery from "./component/Gallery";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [workout, setWorkout] = useState<Workout[]>([])
+
+    function fetchWorkouts() {
+        axios.get("/api/workout")
+            .then(response => {
+                setWorkout(response.data);
+            })
+            .catch(console.error);
+    }
+
+    useEffect(() => {
+        fetchWorkouts()
+    }, [])
+
+    return (
+        <div className="App">
+
+
+            <Gallery workouts={workout}/>
+
+        </div>
+    );
 }
 
 export default App;
