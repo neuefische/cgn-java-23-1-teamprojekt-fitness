@@ -4,6 +4,7 @@ import com.example.backend.model.Workout;
 import com.example.backend.repo.WorkoutRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ class WorkoutServiceTest {
 
     @Test
     void checkListAllWorkouts() {
+
         //GIVEN
         List<Workout> expectedWorkouts = new ArrayList<>();
         expectedWorkouts.add(new Workout("Joggen gehen", "1", "Joggen"));
