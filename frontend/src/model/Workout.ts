@@ -1,4 +1,3 @@
-
 export type Workout = {
     id: string,
     description: string,

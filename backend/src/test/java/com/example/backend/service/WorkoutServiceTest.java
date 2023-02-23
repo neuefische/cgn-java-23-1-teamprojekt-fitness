@@ -31,7 +31,7 @@ class WorkoutServiceTest {
         when(workoutRepo.listAllWorkouts()).thenReturn(expectedWorkouts);
 
         //WHEN
-        List<Workout> Workouts =workoutService.listAllWorkouts();
+        List<Workout> Workouts = workoutService.listAllWorkouts();
 
         //THEN
         verify(workoutRepo).listAllWorkouts();
@@ -39,5 +39,6 @@ class WorkoutServiceTest {
 
     }
 
-    }
 }
+
+
