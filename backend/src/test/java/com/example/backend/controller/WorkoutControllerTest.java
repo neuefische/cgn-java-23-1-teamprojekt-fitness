@@ -40,7 +40,7 @@ class WorkoutControllerTest {
     @Test
     @DirtiesContext
     void checkListAllWorkouts() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/Workout"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/workout"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
     }

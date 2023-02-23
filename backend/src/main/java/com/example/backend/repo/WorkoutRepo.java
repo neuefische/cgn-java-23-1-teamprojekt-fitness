@@ -10,9 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WorkoutRepo {
 
-    private final List<Workout> workoutList = List.of(new Workout("Im Wald joggen mit anschließenden Dehnübungen", "1", "Joggen"),
-            new Workout("Muskeln trainieren mit Hanteln", "2", "Muskeltraining"),
-     new Workout("Muskeln trainieren mit Hanteln", "3", "Muskeltraining"));
+    private final List<Workout> workoutList = new ArrayList<>();
 
     public List<Workout> listAllWorkouts(){
         return workoutList;
