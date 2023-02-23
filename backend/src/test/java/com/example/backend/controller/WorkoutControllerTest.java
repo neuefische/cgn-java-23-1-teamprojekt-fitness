@@ -13,10 +13,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 
 @SpringBootTest
@@ -39,15 +37,15 @@ class WorkoutControllerTest {
 
     }
 
-  /*  @Test
+    @Test
     @DirtiesContext
-   // void checkListAllWorkouts() throws Exception {
-      //  mockMvc.perform(MockMvcRequestBuilders.get("api/Workout"))
-              //  .andExpect(status().isOk())
-               // .andExpect(content().json("[]"));
-   // }
+    void checkListAllWorkouts() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/Workout"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"));
+    }
 
-*/
+
 }
 
 

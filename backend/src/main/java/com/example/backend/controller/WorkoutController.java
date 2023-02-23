@@ -16,7 +16,7 @@ import java.util.List;
 public class WorkoutController {
 
     private final WorkoutService workoutService;
-    @GetMapping("/Workout")
+    @GetMapping("/workout")
     public List<Workout> workoutList(){
         return workoutService.listAllWorkouts();
     }
