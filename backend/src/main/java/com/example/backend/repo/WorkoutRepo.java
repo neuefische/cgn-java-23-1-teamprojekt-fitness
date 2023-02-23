@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Repository
 @RequiredArgsConstructor
@@ -18,7 +19,12 @@ public class WorkoutRepo {
         return workoutList;
     }
 
-    public Workout updateWorkout(){
-
+    public Workout updateWorkoutById(String id, Workout workoutToChange) {
+        for (Workout workout : workoutList) {
+            if (workout.id().equals(id)) {
+                workoutList.set(workoutList.indexOf(workout), workoutToChange);
+            }
+        }
+        return workoutToChange;
     }
 }

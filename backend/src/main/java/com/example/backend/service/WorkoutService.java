@@ -23,4 +23,8 @@ public class WorkoutService {
         return workoutrepo.listAllWorkouts();
 
     }
+
+    public Workout updateWorkoutById(String id, Workout workoutToChange){
+        return workoutrepo.updateWorkoutById(id,workoutToChange);
+    }
 }
