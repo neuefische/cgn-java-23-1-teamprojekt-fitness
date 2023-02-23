@@ -2,6 +2,7 @@ import {Workout} from "../model/Workout";
 import "./WorkoutCard.css";
 type WorkoutCardProps ={
     workout:Workout
+    deletWorkout: (workout: Workout) => void
 }
 export default function WorkoutCard(props:WorkoutCardProps){
     return(

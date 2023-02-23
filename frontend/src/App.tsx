@@ -17,6 +17,13 @@ function App() {
             })
             .catch(console.error);
     }
+    function deleteWorkout(workout: Workout) {
+
+            axios.delete("/api/workout/" + workout.id)
+                .then(fetchWorkouts)
+                .catch(console.error);
+        }
+
 
     useEffect(() => {
         fetchWorkouts()
@@ -25,11 +32,11 @@ function App() {
     return (
         <div className="App">
 
-
-            <Gallery workouts={workout}/>
+            <Gallery workouts={workout} deleteWorkout={deleteWorkout}/>
 
         </div>
     );
+
 }
 
 export default App;

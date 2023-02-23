@@ -5,7 +5,7 @@ import com.example.backend.repo.WorkoutRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-
+import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +40,11 @@ class WorkoutServiceTest {
         assertEquals(expectedWorkouts, Workouts);
 
     }
-
+    @Test
+    void deleteWorkout_idNotFound() {
+        // WHEN
+        assertThrows(NoSuchElementException.class, () -> workoutService.deleteWorkoutById("1"));
+    }
 }
 
 
