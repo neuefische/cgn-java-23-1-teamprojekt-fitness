@@ -8,27 +8,28 @@ import Gallery from "./component/Gallery";
 
 function App() {
 
-  const [workout, setWorkout] = useState<Workout[]>([])
-  function fetchWorkouts(){
-    axios.get("/api/workout")
-        .then(response =>{
-          setWorkout(response.data);
-        })
-          .catch(console.error);
-  }
+    const [workout, setWorkout] = useState<Workout[]>([])
 
-  useEffect(() => {
-      fetchWorkouts()
-  }, [])
+    function fetchWorkouts() {
+        axios.get("/api/workout")
+            .then(response => {
+                setWorkout(response.data);
+            })
+            .catch(console.error);
+    }
 
-  return (
-    <div className="App">
+    useEffect(() => {
+        fetchWorkouts()
+    }, [])
+
+    return (
+        <div className="App">
 
 
-          <Gallery workouts={workout}/>
+            <Gallery workouts={workout}/>
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;

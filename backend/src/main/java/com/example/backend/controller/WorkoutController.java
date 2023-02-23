@@ -16,15 +16,10 @@ import java.util.List;
 public class WorkoutController {
 
     private final WorkoutService workoutService;
+
     @GetMapping("/workout")
-    public List<Workout> workoutList(){
+    public List<Workout> workoutList() {
         return workoutService.listAllWorkouts();
+
     }
-
-
-
-
-
-
-
 }

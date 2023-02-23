@@ -1,9 +1,9 @@
 .Gallery-Workouts {
-    border: black 2px solid;
+
     display: flex;
     gap: 4px;
     border: black 2px solid;
     margin: 1px;
     justify-content: space-evenly;
-    
+
 }

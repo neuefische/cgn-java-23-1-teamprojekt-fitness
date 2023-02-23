@@ -7,17 +7,18 @@ type GalleryProps = {
 
     workouts: Workout[]
 }
-export default function Gallery(props:GalleryProps){
-       const workouts=props.workouts
-       .map((i) =>{
-           return(
-            <WorkoutCard workout={i} key={i.id} />)})
+export default function Gallery(props: GalleryProps) {
+    const workouts = props.workouts
+        .map((workout) => {
+            return (
+                <WorkoutCard workout={workout} key={workout.id}/>)
+        })
 
 
-return(
+    return (
 
         <div className="Gallery-Workouts">
-    {workouts}
-    </div>
-)
+            {workouts}
+        </div>
+    )
 }
