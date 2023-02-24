@@ -34,6 +34,12 @@ function App() {
                     return currentWorkout
                 })
             }))
+    } */
+
+    function updateWorkout(item: Workout) {
+        axios.put("/api/workouts/" + item.id, item)
+            .then(fetchWorkouts)
+            .catch(console.error);
     }
 
     return (

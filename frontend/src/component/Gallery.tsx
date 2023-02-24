@@ -14,7 +14,7 @@ export default function Gallery(props: GalleryProps) {
     const workouts = props.workouts
         .map((workout) => {
             return (
-                <WorkoutCard workout={workout} key={workout.id}/>)
+                <WorkoutCard workout={workout} key={workout.id} updateWorkout={props.updateWorkout}/>)
         })
 
 
