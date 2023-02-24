@@ -4,14 +4,14 @@ import com.example.backend.model.Workout;
 import com.example.backend.repo.WorkoutRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
+
 
 class WorkoutServiceTest {
     WorkoutService workoutService;

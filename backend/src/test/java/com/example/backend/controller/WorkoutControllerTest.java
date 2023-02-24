@@ -52,7 +52,7 @@ class WorkoutControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/workouts").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "id": "1",
+                      
                         "description": "Mit dem Fahrrad fahren durch den Wald",
                         "title": "Fahrrad fahren"
                         }
@@ -61,12 +61,14 @@ class WorkoutControllerTest {
                 .andExpect(content().json(
                         """
                         {
-                        "id": "1",
+                       
                         "description": "Mit dem Fahrrad fahren durch den Wald",
                         "title": "Fahrrad fahren"
                         }
                         """)
-                );
+                )
+                .andExpect(jsonPath("$.id").isNotEmpty());
+
     }
 
 
