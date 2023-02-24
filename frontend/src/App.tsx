@@ -36,8 +36,8 @@ function App() {
             }))
     } */
 
-    function updateWorkout(item: Workout) {
-        axios.put("/api/workouts/" + item.id, item)
+    function updateWorkout(workout: Workout) {
+        axios.put("/api/workouts/" + workout.id, workout)
             .then(fetchWorkouts)
             .catch(console.error);
     }
