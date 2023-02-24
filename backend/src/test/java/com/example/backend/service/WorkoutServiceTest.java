@@ -42,20 +42,20 @@ class WorkoutServiceTest {
     }
 
     @Test
-    void checkChangeWorkoutById(){
+    void checkUpdateWorkout(){
         //GIVEN
         List<Workout> previousWorkout = new ArrayList<>();
         previousWorkout.add(new Workout("1", "Joggen gehen", "Joggen"));
         Workout workoutChanged = new Workout("1", "im Wald walken", "Walken");
 
-        when(workoutRepo.updateWorkoutById("1", workoutChanged))
+        when(workoutRepo.updateWorkout("1", workoutChanged))
                 .thenReturn(workoutChanged);
 
         //WHEN
-        Workout actual = workoutService.updateWorkoutById("1", workoutChanged);
+        Workout actual = workoutService.updateWorkout("1", workoutChanged);
 
         //THEN
-        verify(workoutRepo).updateWorkoutById("1", workoutChanged);
+        verify(workoutRepo).updateWorkout("1", workoutChanged);
         assertEquals(workoutChanged, actual);
 
     }

@@ -23,11 +23,11 @@ public class WorkoutController {
 
     }
 
-    @PutMapping("/workout/{id}")
-    public Workout updateWorkoutById(@PathVariable String id, @RequestBody Workout workoutToChange){
+    @PutMapping("/workouts/{id}")
+    public Workout updateWorkout(@PathVariable String id, @RequestBody Workout workoutToChange){
         if(!workoutToChange.id().equals(id)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No Element with id " + id + " found.");
         }
-        return workoutService.updateWorkoutById(id, workoutToChange);
+        return workoutService.updateWorkout(id, workoutToChange);
     }
 }

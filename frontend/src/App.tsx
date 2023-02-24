@@ -22,6 +22,19 @@ function App() {
         fetchWorkouts()
     }, [])
 
+    function updateWorkout(workout: Workout){
+        axios.put("api/workouts/" + workout.id, workout)
+            .then(response => response.data)
+            .then(data => setWorkout(prevState => {
+                return prevState.map(currentWorkout => {
+                    if(currentWorkout.id === workout.id){
+                        return data
+                    }
+                    return currentWorkout
+                })
+            }))
+    }
+
     return (
         <div className="App">
 

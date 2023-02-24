@@ -19,12 +19,14 @@ public class WorkoutRepo {
         return workoutList;
     }
 
-    public Workout updateWorkoutById(String id, Workout workoutToChange) {
+    public Workout updateWorkout(String id, Workout workoutToChange) {
         for (Workout workout : workoutList) {
             if (workout.id().equals(id)) {
                 workoutList.set(workoutList.indexOf(workout), workoutToChange);
             }
         }
         return workoutToChange;
+
     }
+
 }
