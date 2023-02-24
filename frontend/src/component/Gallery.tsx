@@ -6,7 +6,10 @@ import "./Gallery.css"
 type GalleryProps = {
 
     workouts: Workout[]
+
+    updateWorkout : (workout: Workout) => void
 }
+
 export default function Gallery(props: GalleryProps) {
     const workouts = props.workouts
         .map((workout) => {

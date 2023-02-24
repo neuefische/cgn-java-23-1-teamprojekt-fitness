@@ -13,7 +13,8 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class WorkoutRepo {
 
-    private final List<Workout> workoutList = new ArrayList<>();
+    private final List<Workout> workoutList = List.of(new Workout("1", "test", "test")) ;
+
 
     public List<Workout> listAllWorkouts() {
         return workoutList;

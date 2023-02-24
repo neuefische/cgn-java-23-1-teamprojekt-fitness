@@ -4,6 +4,7 @@ import './App.css';
 import {Workout} from "./model/Workout";
 import axios from "axios";
 import Gallery from "./component/Gallery";
+import UpdateWorkout from "./component/UpdateWorkout";
 
 
 function App() {
@@ -22,12 +23,12 @@ function App() {
         fetchWorkouts()
     }, [])
 
-    function updateWorkout(workout: Workout){
+    /*function updateWorkout(workout: Workout) {
         axios.put("api/workouts/" + workout.id, workout)
             .then(response => response.data)
             .then(data => setWorkout(prevState => {
                 return prevState.map(currentWorkout => {
-                    if(currentWorkout.id === workout.id){
+                    if (currentWorkout.id === workout.id) {
                         return data
                     }
                     return currentWorkout
@@ -38,8 +39,9 @@ function App() {
     return (
         <div className="App">
 
+            <Gallery workouts={workout} updateWorkout={updateWorkout}/>
 
-            <Gallery workouts={workout}/>
+
 
         </div>
     );
