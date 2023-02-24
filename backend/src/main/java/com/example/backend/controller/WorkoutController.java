@@ -15,7 +15,7 @@ public class WorkoutController {
 
     private final WorkoutService workoutService;
 
-    @GetMapping("/workout")
+    @GetMapping("/workouts")
     public List<Workout> workoutList() {
         return workoutService.listAllWorkouts();
 
@@ -25,7 +25,7 @@ public class WorkoutController {
         return workoutService.getWorkoutById(id);
     }
 
-    @DeleteMapping("workout/{id}")
+    @DeleteMapping("workouts/{id}")
     void deleteWorkout(@PathVariable String id) {
         workoutService.deleteWorkoutById(id);
     }

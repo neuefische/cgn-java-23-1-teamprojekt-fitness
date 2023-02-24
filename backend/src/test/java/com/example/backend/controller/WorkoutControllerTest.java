@@ -38,7 +38,7 @@ class WorkoutControllerTest {
     @Test
     @DirtiesContext
     void checkListAllWorkouts() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/workout"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/workouts"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
     }
@@ -47,7 +47,7 @@ class WorkoutControllerTest {
     @Test
     void expectWorkoutOnGetById() throws Exception {
         String actual = mockMvc.perform(
-                        post("http://localhost:8080/api/workout")
+                        post("http://localhost:8080/api/workouts")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                                                     {
@@ -70,7 +70,7 @@ class WorkoutControllerTest {
         Workout actualTodo = objectMapper.readValue(actual, Workout.class);
         String id = actualTodo.id();
 
-        mockMvc.perform(get("http://localhost:8080/api/workout/" + id))
+        mockMvc.perform(get("http://localhost:8080/api/workouts/" + id))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
@@ -85,7 +85,7 @@ class WorkoutControllerTest {
     @Test
     void expectSuccessfulDelete() throws Exception {
         String saveResult = mockMvc.perform(
-                        post("http://localhost:8080/api/workout")
+                        post("http://localhost:8080/api/workouts")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                                                     {"description": "Training",
@@ -99,10 +99,10 @@ class WorkoutControllerTest {
         Workout saveResultTodo = objectMapper.readValue(saveResult, Workout.class);
         String id = saveResultTodo.id();
 
-        mockMvc.perform(delete("http://localhost:8080/api/workout/" + id))
+        mockMvc.perform(delete("http://localhost:8080/api/workouts/" + id))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(get("http://localhost:8080/api/workout"))
+        mockMvc.perform(get("http://localhost:8080/api/workouts"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         []
