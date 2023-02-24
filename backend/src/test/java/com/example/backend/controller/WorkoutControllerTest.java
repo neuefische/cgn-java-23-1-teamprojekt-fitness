@@ -13,7 +13,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -52,9 +51,10 @@ class WorkoutControllerTest {
         // GIVEN
         // workoutRepo.addWorkout(workout1);
         // workoutRepo.addWorkout(workout2);
+        workout1= new Workout("1", "Training", "Training");
 
         // WHEN
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/" + "1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/" + workout1.id()))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {

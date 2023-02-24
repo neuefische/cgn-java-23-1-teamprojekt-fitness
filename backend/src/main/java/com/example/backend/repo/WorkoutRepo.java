@@ -22,7 +22,7 @@ public class WorkoutRepo {
     public List<Workout> listAllWorkouts() {
         return workoutList;
     }
-    public Optional<Workout> getTodoItemById(String id) {
+    public Optional<Workout> getWorkoutById(String id) {
         return Optional.ofNullable(workoutMapMap.get(id));
     }
     public void deleteWorkoutById(String id) {

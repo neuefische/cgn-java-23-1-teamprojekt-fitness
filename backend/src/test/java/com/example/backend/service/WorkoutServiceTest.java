@@ -49,13 +49,13 @@ class WorkoutServiceTest {
     @Test
     void getTodoItemById_notPresent() {
         // GIVEN
-        when(workoutRepo.getTodoItemById("1")).thenReturn(Optional.empty());
+        when(workoutRepo.getWorkoutById("1")).thenReturn(Optional.empty());
 
         // WHEN
         assertThrows(NoSuchElementException.class, () -> workoutService.getWorkoutById("1"));
 
         // THEN
-        verify(workoutRepo).getTodoItemById("1");
+        verify(workoutRepo).getWorkoutById("1");
     }
 }
 

@@ -25,7 +25,7 @@ public class WorkoutService {
     }
 
     public Workout getWorkoutById(String id) {
-        return workoutrepo.getTodoItemById(id).orElseThrow(NoSuchElementException::new);
+        return workoutrepo.getWorkoutById(id).orElseThrow(NoSuchElementException::new);
     }
 
     public void deleteWorkoutById(String id) {
