@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Workout;
+import com.example.backend.repo.WorkoutRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,6 +21,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class WorkoutControllerTest {
+    WorkoutRepo workoutRepo;
+
 
     @Autowired
     MockMvc mockMvc;
@@ -43,70 +46,47 @@ class WorkoutControllerTest {
                 .andExpect(content().json("[]"));
     }
 
-    @DirtiesContext
     @Test
-    void expectWorkoutOnGetById() throws Exception {
-        String actual = mockMvc.perform(
-                        post("http://localhost:8080/api/workouts")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content("""
-                                                    {
-                                        "description": "Training",
-                                        "title": "Training"}
-                                                    """)
-                )
+    @DirtiesContext
+    void getWorkoutById() throws Exception {
+        // GIVEN
+        // workoutRepo.addWorkout(workout1);
+        // workoutRepo.addWorkout(workout2);
+
+        // WHEN
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/" + "1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
-                                               
-                            "description": "Training",
+                            "id": "1",
+                           "description": "Training",
                             "title": "Training"
                         }
-                        """))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
+                        """));
 
-        Workout actualTodo = objectMapper.readValue(actual, Workout.class);
-        String id = actualTodo.id();
+        // THEN
+    }
 
-        mockMvc.perform(get("http://localhost:8080/api/workouts/" + id))
+
+    @Test
+    @DirtiesContext
+    void deleteWorkout() throws Exception {
+        // GIVEN
+        // workoutRepo.addWorkout(workout1);
+        // workoutRepo.addWorkout(workout2);
+
+        // WHEN
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/workouts/" + "1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
-                          "id": "<ID>",
-                          "description": "Training",
-                          "title": "Training"
+                            "id": "1",
+                           "description": "Training",
+                           "title": "Training"
                         }
-                        """.replaceFirst("<ID>", id)));
-    }
-
-    @DirtiesContext
-    @Test
-    void expectSuccessfulDelete() throws Exception {
-        String saveResult = mockMvc.perform(
-                        post("http://localhost:8080/api/workouts")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content("""
-                                                    {"description": "Training",
-                                        "title": "Training"}
-                                                    """)
-                )
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-
-        Workout saveResultTodo = objectMapper.readValue(saveResult, Workout.class);
-        String id = saveResultTodo.id();
-
-        mockMvc.perform(delete("http://localhost:8080/api/workouts/" + id))
-                .andExpect(status().isOk());
-
-        mockMvc.perform(get("http://localhost:8080/api/workouts"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("""
-                        []
                         """));
+
+        // THEN
     }
 
 }

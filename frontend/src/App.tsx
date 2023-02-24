@@ -11,7 +11,7 @@ function App() {
     const [workout, setWorkout] = useState<Workout[]>([])
 
     function fetchWorkouts() {
-        axios.get("/api/workout")
+        axios.get("/api/workouts")
             .then(response => {
                 setWorkout(response.data);
             })
@@ -20,7 +20,7 @@ function App() {
 
     function deleteWorkout(workout: Workout) {
 
-        axios.delete("/api/workout/" + workout.id)
+        axios.delete("/api/workouts/" + workout.id)
             .then(fetchWorkouts)
             .catch(console.error);
     }
