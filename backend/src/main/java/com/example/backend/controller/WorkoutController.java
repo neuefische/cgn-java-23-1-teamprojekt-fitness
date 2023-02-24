@@ -3,9 +3,7 @@ package com.example.backend.controller;
 import com.example.backend.model.Workout;
 import com.example.backend.service.WorkoutService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,9 +15,13 @@ public class WorkoutController {
 
     private final WorkoutService workoutService;
 
-    @GetMapping("/workout")
+    @GetMapping("/workouts")
     public List<Workout> workoutList() {
         return workoutService.listAllWorkouts();
+    }
 
+    @PostMapping("/workouts")
+    public Workout addWorkout(@RequestBody Workout workout) {
+        return workoutService.addWorkout(workout);
     }
 }
