@@ -47,7 +47,7 @@ class WorkoutServiceTest {
         assertThrows(NoSuchElementException.class, () -> workoutService.deleteWorkoutById("1"));
     }
     @Test
-    void getTodoItemById_notPresent() {
+    void getWorkoutById() {
         // GIVEN
         when(workoutRepo.getWorkoutById("1")).thenReturn(Optional.empty());
 

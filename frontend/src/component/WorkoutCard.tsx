@@ -1,11 +1,12 @@
 import {Workout} from "../model/Workout";
 import "./WorkoutCard.css";
-type WorkoutCardProps ={
-    workout:Workout
-    deletWorkout: (workout: Workout) => void
+
+type WorkoutCardProps = {
+    workout: Workout
+    deleteWorkout: (workout: Workout) => void
 }
-export default function WorkoutCard(props:WorkoutCardProps){
-    return(
+export default function WorkoutCard(props: WorkoutCardProps) {
+    return (
         <div className={"workout-card"}>
             <h3>{props.workout.id}</h3>
             <h2>{props.workout.title}</h2>
