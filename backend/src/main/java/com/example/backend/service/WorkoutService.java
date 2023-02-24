@@ -18,12 +18,18 @@ public class WorkoutService {
 
 
     private final WorkoutRepo workoutrepo;
+    private final IdGenerator idGenerator;
 
     public List<Workout> listAllWorkouts() {
         return workoutrepo.listAllWorkouts();
     }
 
     public Workout addWorkout(Workout workout) {
-        return workoutrepo.addWorkout(workout);
+        Workout workoutToAdd = new Workout(
+                idGenerator.generateID(),
+                workout.description(),
+                workout.title()
+        );
+        return workoutrepo.addWorkout(workoutToAdd);
     }
 }

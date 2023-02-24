@@ -1,5 +1,6 @@
 package com.example.backend.repo;
 
+import com.example.backend.service.IdGenerator;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import com.example.backend.model.Workout;
@@ -22,6 +23,7 @@ public class WorkoutRepo {
     public Workout addWorkout(Workout workout) {
         workoutList.add(workout);
         return workout;
+
     }
 
 }

@@ -49,7 +49,7 @@ class WorkoutControllerTest {
     @Test
     @DirtiesContext
     void checkAddWorkout() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/workout").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/workouts").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
                         "id": "1",

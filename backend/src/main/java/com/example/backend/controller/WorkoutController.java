@@ -15,12 +15,12 @@ public class WorkoutController {
 
     private final WorkoutService workoutService;
 
-    @GetMapping("/workout")
+    @GetMapping("/workouts")
     public List<Workout> workoutList() {
         return workoutService.listAllWorkouts();
     }
 
-    @PostMapping("/workout")
+    @PostMapping("/workouts")
     public Workout addWorkout(@RequestBody Workout workout) {
         return workoutService.addWorkout(workout);
     }
