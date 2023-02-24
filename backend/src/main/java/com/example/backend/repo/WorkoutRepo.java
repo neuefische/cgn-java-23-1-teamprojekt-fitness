@@ -25,7 +25,7 @@ public class WorkoutRepo {
     public Optional<Workout> getTodoItemById(String id) {
         return Optional.ofNullable(workoutMapMap.get(id));
     }
-    public Workout deleteWorkoutById(String id) {
-        return workoutMapMap.remove(id);
+    public void deleteWorkoutById(String id) {
+        workoutMapMap.remove(id);
     }
 }

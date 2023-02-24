@@ -28,9 +28,8 @@ public class WorkoutService {
         return workoutrepo.getTodoItemById(id).orElseThrow(NoSuchElementException::new);
     }
 
-    public Workout deleteWorkoutById(String id) {
-        // Check if Workout exists, else throw Exception
-        getWorkoutById(id);
-        return workoutrepo.deleteWorkoutById(id);
+    public void deleteWorkoutById(String id) {
+        workoutrepo.deleteWorkoutById(id);
     }
 }
+

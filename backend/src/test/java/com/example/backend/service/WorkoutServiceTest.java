@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,9 +42,20 @@ class WorkoutServiceTest {
 
     }
     @Test
-    void deleteWorkout_idNotFound() {
+    void deleteWorkout() {
         // WHEN
         assertThrows(NoSuchElementException.class, () -> workoutService.deleteWorkoutById("1"));
+    }
+    @Test
+    void getTodoItemById_notPresent() {
+        // GIVEN
+        when(workoutRepo.getTodoItemById("1")).thenReturn(Optional.empty());
+
+        // WHEN
+        assertThrows(NoSuchElementException.class, () -> workoutService.getWorkoutById("1"));
+
+        // THEN
+        verify(workoutRepo).getTodoItemById("1");
     }
 }
 

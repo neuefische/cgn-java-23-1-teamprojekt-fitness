@@ -1,43 +1,37 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Workout;
-import com.example.backend.repo.WorkoutRepo;
-import com.example.backend.service.WorkoutService;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
-
-
-
 class WorkoutControllerTest {
 
     @Autowired
     MockMvc mockMvc;
     @Autowired
-    WorkoutRepo workoutRepo;
-    WorkoutService workoutService;
+
+    ObjectMapper objectMapper;
     Workout workout1, workout2;
 
     @BeforeEach
     void setUp() {
-        workout1 = new Workout(" Training ", "1", "Training");
-        workout2 = new Workout("Schnell laufen", "2", "Joggen");
+        workout1 = new Workout("1", "Training", "Training");
+        workout2 = new Workout("2", "Schnell laufen", "Joggen");
 
     }
 
@@ -48,46 +42,71 @@ class WorkoutControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
     }
-    @Test
-    @DirtiesContext
-    void getWorkoutById() throws Exception {
-        // GIVEN
-        workoutRepo.addWorkout(workout1);
-        workoutRepo.addWorkout(workout2);
 
-        // WHEN
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/workout/" + workout1.id()))
+    @DirtiesContext
+    @Test
+    void expectWorkoutOnGetById() throws Exception {
+        String actual = mockMvc.perform(
+                        post("http://localhost:8080/api/workout")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("""
+                                                    {
+                                        "description": "Training",
+                                        "title": "Training"}
+                                                    """)
+                )
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
-                            "id": "1",
+                                               
                             "description": "Training",
                             "title": "Training"
                         }
-                        """));
+                        """))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
 
-        // THEN
+        Workout actualTodo = objectMapper.readValue(actual, Workout.class);
+        String id = actualTodo.id();
+
+        mockMvc.perform(get("http://localhost:8080/api/workout/" + id))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                          "id": "<ID>",
+                          "description": "Training",
+                          "title": "Training"
+                        }
+                        """.replaceFirst("<ID>", id)));
     }
 
-    @Test
     @DirtiesContext
-    void deleteTodoItem() throws Exception {
-        // GIVEN
-        workoutRepo.addWorkout(workout1);
-        workoutRepo.addWorkout(workout2);
+    @Test
+    void expectSuccessfulDelete() throws Exception {
+        String saveResult = mockMvc.perform(
+                        post("http://localhost:8080/api/workout")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("""
+                                                    {"description": "Training",
+                                        "title": "Training"}
+                                                    """)
+                )
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
 
-        // WHEN
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/todo/" + workout1.id()))
+        Workout saveResultTodo = objectMapper.readValue(saveResult, Workout.class);
+        String id = saveResultTodo.id();
+
+        mockMvc.perform(delete("http://localhost:8080/api/workout/" + id))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("http://localhost:8080/api/workout"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
-                        {
-                            "id": "1",
-                            "description": "Training",
-                            "title": "Training"
-                        }
+                        []
                         """));
-
-        // THEN
     }
 
 }

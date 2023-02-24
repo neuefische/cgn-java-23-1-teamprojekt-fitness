@@ -20,8 +20,13 @@ public class WorkoutController {
         return workoutService.listAllWorkouts();
 
     }
+    @GetMapping("{id}")
+    Workout getWorkoutById(@PathVariable String id) {
+        return workoutService.getWorkoutById(id);
+    }
+
     @DeleteMapping("workout/{id}")
-    public Workout deleteWorkout(@PathVariable String id) {
-        return workoutService.deleteWorkoutById(id);
+    void deleteWorkout(@PathVariable String id) {
+        workoutService.deleteWorkoutById(id);
     }
 }
