@@ -17,6 +17,13 @@ function App() {
             })
             .catch(console.error);
     }
+    function deleteWorkout(workout: Workout) {
+
+            axios.delete("/api/workout/" + workout.id)
+                .then(fetchWorkouts)
+                .catch(console.error);
+        }
+
 
     function deleteWorkout(workout: Workout) {
 
