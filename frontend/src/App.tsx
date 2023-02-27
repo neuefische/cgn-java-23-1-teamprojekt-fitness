@@ -4,6 +4,7 @@ import './App.css';
 import {Workout} from "./model/Workout";
 import axios from "axios";
 import Gallery from "./component/Gallery";
+import Header from "./component/Header";
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
 
     return (
         <div className="App">
-
+            <Header/>
             <Gallery workouts={workout} deleteWorkout={deleteWorkout}/>
 
         </div>
