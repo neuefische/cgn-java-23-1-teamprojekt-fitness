@@ -25,3 +25,4 @@ public class WorkoutController {
         return workoutService.addWorkout(workout);
     }
 }
+
