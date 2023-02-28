@@ -22,7 +22,7 @@ public class WorkoutService {
     private final IdGenerator idGenerator;
 
     public List<Workout> listAllWorkouts() {
-        return workoutrepo.listAllWorkouts();
+        return workoutrepo.findAll();
     }
 
     public Workout addWorkout(Workout workout) {
