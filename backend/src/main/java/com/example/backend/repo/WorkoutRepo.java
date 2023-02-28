@@ -4,26 +4,15 @@ import com.example.backend.service.IdGenerator;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import com.example.backend.model.Workout;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
-public class WorkoutRepo {
+public interface  WorkoutRepo extends MongoRepository<Workout,String> {
 
-    private final List<Workout> workoutList = new ArrayList<>();
-
-    public List<Workout> listAllWorkouts() {
-        return workoutList;
-    }
-
-
-    public Workout addWorkout(Workout workout) {
-        workoutList.add(workout);
-        return workout;
 
     }
 
-}
