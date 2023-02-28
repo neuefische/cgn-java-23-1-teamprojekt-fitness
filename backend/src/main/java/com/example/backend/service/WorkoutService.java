@@ -31,7 +31,7 @@ public class WorkoutService {
                 workout.description(),
                 workout.title()
         );
-        return workoutrepo.addWorkout(workoutToAdd);
+        return workoutrepo.save(workoutToAdd);
     }
 
     public Workout getWorkoutByID(String id){
