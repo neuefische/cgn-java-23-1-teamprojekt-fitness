@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 @AllArgsConstructor
@@ -32,4 +33,10 @@ public class WorkoutService {
         );
         return workoutrepo.addWorkout(workoutToAdd);
     }
+
+    public Workout getWorkoutByID(String id){
+        return workoutrepo.findById(id).orElseThrow(NoSuchElementException::new);
+    }
+
+
 }
