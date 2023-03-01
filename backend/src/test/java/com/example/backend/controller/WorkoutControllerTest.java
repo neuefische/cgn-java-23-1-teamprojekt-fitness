@@ -21,19 +21,15 @@ class WorkoutControllerTest {
     @Autowired
     WorkoutRepo workoutRepo;
 
-
     @Autowired
     MockMvc mockMvc;
 
-
     Workout workout1, workout2;
-
 
     @BeforeEach
     void setUp() {
-         workout1 = new Workout("1", "Training", "Training");
-         workout2 = new Workout("2", "Schnell laufen", "Joggen");
-
+        workout1 = new Workout("1", "Training", "Training");
+        workout2 = new Workout("2", "Schnell laufen", "Joggen");
     }
 
     @Test
@@ -46,63 +42,52 @@ class WorkoutControllerTest {
 
     @Test
     @DirtiesContext
-
     void getWorkoutById() throws Exception {
         // GIVEN
-         workoutRepo.save(workout1);
-         workoutRepo.save(workout2);
+        workoutRepo.save(workout1);
+        workoutRepo.save(workout2);
 
         // WHEN
         mockMvc.perform(MockMvcRequestBuilders.get("/api/" + workout1.id()))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
-                       {
-                       
-                        "description": "Training",
-                        "title": "Training"
-                        }
-                        """));
-
-        // THEN
+                        {                    
+                         "description": "Training",
+                         "title": "Training"
+                         }
+                         """));
     }
-
 
     @Test
     @DirtiesContext
     void deleteWorkout() throws Exception {
         // GIVEN
-         workoutRepo.save(workout1);
-
+        workoutRepo.save(workout1);
 
         // WHEN
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/workouts/" + workout1.id()))
                 .andExpect(status().isOk());
-
-
-        // THEN
     }
+
     @Test
     @DirtiesContext
     void checkAddWorkout() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/workouts").contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                      
-                        "description": "Mit dem Fahrrad fahren durch den Wald",
-                        "title": "Fahrrad fahren"
-                        }
-                        """))
+                        .content("""
+                                {                     
+                                "description": "Mit dem Fahrrad fahren durch den Wald",
+                                "title": "Fahrrad fahren"
+                                }
+                                """))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         """
-                        {
-                       
-                        "description": "Mit dem Fahrrad fahren durch den Wald",
-                        "title": "Fahrrad fahren"
-                        }
-                        """)
+                                {                       
+                                "description": "Mit dem Fahrrad fahren durch den Wald",
+                                "title": "Fahrrad fahren"
+                                }
+                                """)
                 )
-             .andExpect(jsonPath("$.id").isNotEmpty());
-
+                .andExpect(jsonPath("$.id").isNotEmpty());
     }
 }

@@ -2,7 +2,6 @@ import {Workout} from "../model/Workout";
 import WorkoutCard from "./WorkoutCard";
 import "./Gallery.css"
 
-
 type GalleryProps = {
 
     workouts: Workout[]

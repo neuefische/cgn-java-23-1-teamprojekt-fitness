@@ -1,12 +1,11 @@
 import {Workout} from "../model/Workout";
 import {ChangeEvent, useState} from "react";
 
-
 type AddWorkoutProps = {
     addWorkout: (workoutToAdd: Workout) => void,
 }
 
-export default function AddWorkout(props: AddWorkoutProps){
+export default function AddWorkout(props: AddWorkoutProps) {
 
     const [workoutToAdd, setWorkoutToAdd] = useState<Workout>({
         id: "",
@@ -14,21 +13,21 @@ export default function AddWorkout(props: AddWorkoutProps){
         title: "",
     });
 
-    function handleChangeDescription(event: ChangeEvent<HTMLInputElement>){
+    function handleChangeDescription(event: ChangeEvent<HTMLInputElement>) {
         setWorkoutToAdd({
             ...workoutToAdd,
             description: event.target.value,
         });
     }
 
-    function handleChangeTitle(event: ChangeEvent<HTMLInputElement>){
+    function handleChangeTitle(event: ChangeEvent<HTMLInputElement>) {
         setWorkoutToAdd({
             ...workoutToAdd,
             title: event.target.value,
         });
     }
 
-    function handleClickAddWorkout(){
+    function handleClickAddWorkout() {
         props.addWorkout(workoutToAdd);
         setWorkoutToAdd({
             ...workoutToAdd,
@@ -38,10 +37,10 @@ export default function AddWorkout(props: AddWorkoutProps){
         })
     }
 
-    return(
+    return (
         <div>
-            Title: <input value={workoutToAdd.title} onChange={handleChangeTitle} />
-            Description: <input value={workoutToAdd.description} onChange={handleChangeDescription} />
+            Title: <input value={workoutToAdd.title} onChange={handleChangeTitle}/>
+            Description: <input value={workoutToAdd.description} onChange={handleChangeDescription}/>
             <button onClick={handleClickAddWorkout}>Add your Workout</button>
         </div>
     );

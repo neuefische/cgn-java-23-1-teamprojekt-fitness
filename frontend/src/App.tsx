@@ -45,12 +45,9 @@ function App() {
         <div className="App">
             <Header/>
             <AddWorkout addWorkout={addWorkout}/>
-
             <Gallery workouts={workout} deleteWorkout={deleteWorkout}/>
-
         </div>
     );
-
 }
 
 export default App;
