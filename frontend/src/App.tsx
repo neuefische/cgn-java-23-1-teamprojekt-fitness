@@ -20,9 +20,8 @@ function App() {
             .catch(console.error);
     }
 
-    function deleteWorkout(workout: Workout) {
-
-        axios.delete("/api/workouts/" + workout.id)
+    function deleteWorkout(id: string) {
+        axios.delete("/api/workouts/" + id)
             .then(fetchWorkouts)
             .catch(console.error);
     }
@@ -32,7 +31,7 @@ function App() {
         fetchWorkouts()
     }, [])
 
-    function addWorkout(workoutToAdd: Workout){
+    function addWorkout(workoutToAdd: Workout) {
         axios.post("/api/workouts", workoutToAdd)
             .then(() => {
                 fetchWorkouts();
@@ -46,8 +45,9 @@ function App() {
         <div className="App">
             <Header/>
             <AddWorkout addWorkout={addWorkout}/>
+
             <Gallery workouts={workout} deleteWorkout={deleteWorkout}/>
-    
+
         </div>
     );
 

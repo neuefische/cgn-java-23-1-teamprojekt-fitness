@@ -19,12 +19,17 @@ class WorkoutServiceTest {
     WorkoutService workoutService;
     WorkoutRepo workoutRepo;
     IdGenerator idGenerator;
+    Workout workout1;
+    Workout workout2;
 
     @BeforeEach
     public void setUp() {
         workoutRepo = mock(WorkoutRepo.class);
         idGenerator = mock(IdGenerator.class);
         workoutService = new WorkoutService(workoutRepo, idGenerator);
+        workout1 = new Workout("1", "Training", "Training");
+        workout2 = new Workout("2", "Schnell laufen", "Joggen");
+
     }
 
     @Test
@@ -46,19 +51,25 @@ class WorkoutServiceTest {
     }
     @Test
     void deleteWorkout() {
-        // WHEN
+        workoutRepo.save(workout1);
+        when(workoutRepo.findById("1")).thenReturn(Optional.empty());
+
         assertThrows(NoSuchElementException.class, () -> workoutService.deleteWorkoutById("1"));
+
+        // WHEN
+
+
     }
     @Test
     void getWorkoutById() {
         // GIVEN
-        when(workoutRepo.getWorkoutById("1")).thenReturn(Optional.empty());
+        when(workoutRepo.findById("1")).thenReturn(Optional.empty());
 
         // WHEN
-        assertThrows(NoSuchElementException.class, () -> workoutService.getWorkoutById("1"));
+        assertThrows(NoSuchElementException.class, () -> workoutService.getWorkoutByID("1"));
 
         // THEN
-        verify(workoutRepo).getWorkoutById("1");
+        verify(workoutRepo).findById("1");
     }
 
     @Test

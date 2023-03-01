@@ -26,7 +26,7 @@ public class WorkoutController {
     }
     @GetMapping("{id}")
     Workout getWorkoutById(@PathVariable String id) {
-        return workoutService.getWorkoutById(id);
+        return workoutService.getWorkoutByID(id);
     }
 
     @DeleteMapping("workouts/{id}")

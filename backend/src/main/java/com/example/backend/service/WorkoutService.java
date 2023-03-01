@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 
 @AllArgsConstructor
@@ -38,7 +39,15 @@ public class WorkoutService {
     }
 
     public void deleteWorkoutById(String id) {
-        workoutrepo.deleteWorkoutById(id);
+        Optional<Workout> workoutToDelete = workoutrepo.findById(id);
+        if (workoutToDelete.isEmpty()) {
+            throw new NoSuchElementException();
+        } else {
+            workoutrepo.deleteById(id);
+
+        }
+       // return workoutToDelete.get();
+
     }
 }
 
