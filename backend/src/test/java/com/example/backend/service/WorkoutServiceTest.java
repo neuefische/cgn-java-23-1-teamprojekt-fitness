@@ -34,13 +34,13 @@ class WorkoutServiceTest {
         List<Workout> expectedWorkouts = new ArrayList<>();
         expectedWorkouts.add(new Workout("1", "Joggen gehen", "Joggen"));
         expectedWorkouts.add(new Workout("2", "mit Hanteln trainieren", "Muskeltraining"));
-        when(workoutRepo.listAllWorkouts()).thenReturn(expectedWorkouts);
+        when(workoutRepo.findAll()).thenReturn(expectedWorkouts);
 
         //WHEN
         List<Workout> Workouts = workoutService.listAllWorkouts();
 
         //THEN
-        verify(workoutRepo).listAllWorkouts();
+        verify(workoutRepo).findAll();
         assertEquals(expectedWorkouts, Workouts);
 
     }
@@ -67,14 +67,14 @@ class WorkoutServiceTest {
         //GIVEN
         Workout expectedWorkout = new Workout("1", "Joggen gehen", "Joggen");
         when(idGenerator.generateID()).thenReturn("1");
-        when(workoutRepo.addWorkout(expectedWorkout)).thenReturn(expectedWorkout);
+        when(workoutRepo.save(expectedWorkout)).thenReturn(expectedWorkout);
 
 
         //WHEN
         Workout workout = workoutService.addWorkout(expectedWorkout);
 
         //THEN
-        verify(workoutRepo).addWorkout(expectedWorkout);
+        verify(workoutRepo).save(expectedWorkout);
         assertEquals(expectedWorkout, workout);
     }
 }
