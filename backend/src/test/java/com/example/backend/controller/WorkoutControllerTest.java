@@ -11,30 +11,29 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
-
-
-
 class WorkoutControllerTest {
+    WorkoutRepo workoutRepo;
+
 
     @Autowired
     MockMvc mockMvc;
     @Autowired
-    WorkoutRepo workoutRepo;
+
+    ObjectMapper objectMapper;
     Workout workout1, workout2;
 
     @BeforeEach
     void setUp() {
-        workout1 = new Workout(" Training ", "1", "Training");
-        workout2 = new Workout("Schnell laufen", "2", "Joggen");
+        workout1 = new Workout("1", "Training", "Training");
+        workout2 = new Workout("2", "Schnell laufen", "Joggen");
 
     }
 
@@ -48,6 +47,49 @@ class WorkoutControllerTest {
 
     @Test
     @DirtiesContext
+
+    void getWorkoutById() throws Exception {
+        // GIVEN
+        // workoutRepo.addWorkout(workout1);
+        // workoutRepo.addWorkout(workout2);
+        workout1= new Workout("1", "Training", "Training");
+
+        // WHEN
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/" + workout1.id()))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                            "id": "1",
+                           "description": "Training",
+                            "title": "Training"
+                        }
+                        """));
+
+        // THEN
+    }
+
+
+    @Test
+    @DirtiesContext
+    void deleteWorkout() throws Exception {
+        // GIVEN
+        // workoutRepo.addWorkout(workout1);
+        // workoutRepo.addWorkout(workout2);
+
+        // WHEN
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/workouts/" + "1"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                            "id": "1",
+                           "description": "Training",
+                           "title": "Training"
+                        }
+                        """));
+
+        // THEN
+    }
+
     void checkAddWorkout() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/workouts").contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -70,12 +112,4 @@ class WorkoutControllerTest {
                 .andExpect(jsonPath("$.id").isNotEmpty());
 
     }
-
-
 }
-
-
-
-
-
-

@@ -24,5 +24,14 @@ public class WorkoutController {
     public Workout addWorkout(@RequestBody Workout workout) {
         return workoutService.addWorkout(workout);
     }
+    @GetMapping("{id}")
+    Workout getWorkoutById(@PathVariable String id) {
+        return workoutService.getWorkoutById(id);
+    }
+
+    @DeleteMapping("workouts/{id}")
+    void deleteWorkout(@PathVariable String id) {
+        workoutService.deleteWorkoutById(id);
+    }
 }
 

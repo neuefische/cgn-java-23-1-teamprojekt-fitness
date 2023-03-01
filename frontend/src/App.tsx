@@ -4,6 +4,7 @@ import './App.css';
 import {Workout} from "./model/Workout";
 import axios from "axios";
 import Gallery from "./component/Gallery";
+import Header from "./component/Header";
 import AddWorkout from "./component/AddWorkout";
 
 
@@ -18,6 +19,14 @@ function App() {
             })
             .catch(console.error);
     }
+
+    function deleteWorkout(workout: Workout) {
+
+        axios.delete("/api/workouts/" + workout.id)
+            .then(fetchWorkouts)
+            .catch(console.error);
+    }
+
 
     useEffect(() => {
         fetchWorkouts()
@@ -35,12 +44,13 @@ function App() {
 
     return (
         <div className="App">
-
+            <Header/>
             <AddWorkout addWorkout={addWorkout}/>
-            <Gallery workouts={workout}/>
-
+            <Gallery workouts={workout} deleteWorkout={deleteWorkout}/>
+    
         </div>
     );
+
 }
 
 export default App;
