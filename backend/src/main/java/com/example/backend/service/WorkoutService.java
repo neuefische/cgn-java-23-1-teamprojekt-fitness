@@ -34,7 +34,7 @@ public class WorkoutService {
         return workoutrepo.save(workoutToAdd);
     }
 
-    public Workout getWorkoutByID(String id){
+    public Workout getWorkoutByID(String id) {
         return workoutrepo.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
