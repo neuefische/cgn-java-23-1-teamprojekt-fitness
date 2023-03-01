@@ -47,6 +47,7 @@ class WorkoutControllerTest {
 
     @Test
     @DirtiesContext
+
     void getWorkoutById() throws Exception {
         // GIVEN
         // workoutRepo.addWorkout(workout1);
@@ -89,10 +90,26 @@ class WorkoutControllerTest {
         // THEN
     }
 
+    void checkAddWorkout() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/workouts").contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                      
+                        "description": "Mit dem Fahrrad fahren durch den Wald",
+                        "title": "Fahrrad fahren"
+                        }
+                        """))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        """
+                        {
+                       
+                        "description": "Mit dem Fahrrad fahren durch den Wald",
+                        "title": "Fahrrad fahren"
+                        }
+                        """)
+                )
+                .andExpect(jsonPath("$.id").isNotEmpty());
+
+    }
 }
-
-
-
-
-
-

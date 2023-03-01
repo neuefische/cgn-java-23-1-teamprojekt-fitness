@@ -18,7 +18,11 @@ public class WorkoutController {
     @GetMapping("/workouts")
     public List<Workout> workoutList() {
         return workoutService.listAllWorkouts();
+    }
 
+    @PostMapping("/workouts")
+    public Workout addWorkout(@RequestBody Workout workout) {
+        return workoutService.addWorkout(workout);
     }
     @GetMapping("{id}")
     Workout getWorkoutById(@PathVariable String id) {
@@ -30,3 +34,4 @@ public class WorkoutController {
         workoutService.deleteWorkoutById(id);
     }
 }
+

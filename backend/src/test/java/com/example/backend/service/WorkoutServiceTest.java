@@ -9,19 +9,22 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+
+
 
 class WorkoutServiceTest {
     WorkoutService workoutService;
     WorkoutRepo workoutRepo;
+    IdGenerator idGenerator;
 
     @BeforeEach
     public void setUp() {
         workoutRepo = mock(WorkoutRepo.class);
-        workoutService = new WorkoutService(workoutRepo);
+        idGenerator = mock(IdGenerator.class);
+        workoutService = new WorkoutService(workoutRepo, idGenerator);
     }
 
     @Test
@@ -29,8 +32,8 @@ class WorkoutServiceTest {
 
         //GIVEN
         List<Workout> expectedWorkouts = new ArrayList<>();
-        expectedWorkouts.add(new Workout("Joggen gehen", "1", "Joggen"));
-        expectedWorkouts.add(new Workout("mit Hanteln trainieren", "2", "Muskeltraining"));
+        expectedWorkouts.add(new Workout("1", "Joggen gehen", "Joggen"));
+        expectedWorkouts.add(new Workout("2", "mit Hanteln trainieren", "Muskeltraining"));
         when(workoutRepo.listAllWorkouts()).thenReturn(expectedWorkouts);
 
         //WHEN
@@ -56,6 +59,23 @@ class WorkoutServiceTest {
 
         // THEN
         verify(workoutRepo).getWorkoutById("1");
+    }
+
+    @Test
+    void checkAddWorkout() {
+
+        //GIVEN
+        Workout expectedWorkout = new Workout("1", "Joggen gehen", "Joggen");
+        when(idGenerator.generateID()).thenReturn("1");
+        when(workoutRepo.addWorkout(expectedWorkout)).thenReturn(expectedWorkout);
+
+
+        //WHEN
+        Workout workout = workoutService.addWorkout(expectedWorkout);
+
+        //THEN
+        verify(workoutRepo).addWorkout(expectedWorkout);
+        assertEquals(expectedWorkout, workout);
     }
 }
 

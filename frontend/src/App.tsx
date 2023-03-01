@@ -5,6 +5,7 @@ import {Workout} from "./model/Workout";
 import axios from "axios";
 import Gallery from "./component/Gallery";
 import Header from "./component/Header";
+import AddWorkout from "./component/AddWorkout";
 
 
 function App() {
@@ -31,11 +32,22 @@ function App() {
         fetchWorkouts()
     }, [])
 
+    function addWorkout(workoutToAdd: Workout){
+        axios.post("/api/workouts", workoutToAdd)
+            .then(() => {
+                fetchWorkouts();
+            })
+            .catch((error) => {
+                console.error("I'm sorry. Something went wrong!" + error)
+            });
+    }
+
     return (
         <div className="App">
             <Header/>
+            <AddWorkout addWorkout={addWorkout}/>
             <Gallery workouts={workout} deleteWorkout={deleteWorkout}/>
-
+    
         </div>
     );
 
