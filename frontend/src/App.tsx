@@ -6,6 +6,7 @@ import axios from "axios";
 import Gallery from "./component/Gallery";
 import Header from "./component/Header";
 import AddWorkout from "./component/AddWorkout";
+import {Route, Routes} from "react-router-dom";
 
 
 function App() {
@@ -44,8 +45,11 @@ function App() {
     return (
         <div className="App">
             <Header/>
-            <AddWorkout addWorkout={addWorkout}/>
-            <Gallery workouts={workout} deleteWorkout={deleteWorkout}/>
+            <Routes>
+                <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
+                <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout} />}/>
+            </Routes>
+
         </div>
     );
 }

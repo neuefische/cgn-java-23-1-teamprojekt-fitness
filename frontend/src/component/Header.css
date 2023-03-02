@@ -1,8 +1,18 @@
 .app-header {
-    min-height: 100vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    justify-content: center;
+
+}
+
+.link-header{
+    text-decoration: none;
+    color: black;
+}
+
+.button-header{
+    margin: 20px;
+
 }
