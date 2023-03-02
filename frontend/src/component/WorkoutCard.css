@@ -8,7 +8,25 @@
 }
 
 .workout-delete {
-    background-color: red;
+    background-color: lightseagreen;
     border-radius: 18px;
+
+}
+.workout-card-Details{
+    width: 230px;
+    height: 350px;
+    margin: 1%;
+    border: 1px solid black;
+    border-radius: 18px;
+    background-color: lightseagreen;
+    justify-content: center;
+}
+
+.workout-detail-body{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    justify-content: center;
 
 }

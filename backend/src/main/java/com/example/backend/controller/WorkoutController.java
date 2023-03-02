@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Workout;
+import com.example.backend.model.WorkoutDTO;
 import com.example.backend.service.WorkoutService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class WorkoutController {
         return workoutService.addWorkout(workout);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/workouts/{id}")
     Workout getWorkoutById(@PathVariable String id) {
         return workoutService.getWorkoutByID(id);
     }
@@ -34,5 +35,6 @@ public class WorkoutController {
     void deleteWorkout(@PathVariable String id) {
         workoutService.deleteWorkoutById(id);
     }
+
 }
 

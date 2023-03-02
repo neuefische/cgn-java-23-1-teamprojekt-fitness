@@ -48,7 +48,7 @@ class WorkoutControllerTest {
         workoutRepo.save(workout2);
 
         // WHEN
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/" + workout1.id()))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/workouts/" + workout1.id()))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {                    
