@@ -9,7 +9,6 @@ class IdGeneratorTest {
 
     IdGenerator idGenerator = new IdGenerator();
 
-
     @Test
     void generateID() {
         assertNotNull(idGenerator.generateID());

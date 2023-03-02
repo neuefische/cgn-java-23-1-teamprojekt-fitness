@@ -2,11 +2,10 @@ import {Workout} from "../model/Workout";
 import WorkoutCard from "./WorkoutCard";
 import "./Gallery.css"
 
-
 type GalleryProps = {
 
     workouts: Workout[]
-    deleteWorkout: (workout: Workout) => void
+    deleteWorkout: (id: string) => void
 }
 export default function Gallery(props: GalleryProps) {
     const workouts = props.workouts

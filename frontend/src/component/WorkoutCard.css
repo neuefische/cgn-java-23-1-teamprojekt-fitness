@@ -1,6 +1,14 @@
-.workout-card{
+.workout-card {
     width: 230px;
     height: 350px;
     margin: 1%;
-    border: 1px solid blue;
+    border: 1px solid black;
+    border-radius: 18px;
+    background-color: lightseagreen;
+}
+
+.workout-delete {
+    background-color: red;
+    border-radius: 18px;
+
 }
