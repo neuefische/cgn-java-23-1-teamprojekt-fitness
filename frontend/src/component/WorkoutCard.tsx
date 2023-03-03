@@ -1,5 +1,6 @@
 import {Workout} from "../model/Workout";
 import "./WorkoutCard.css";
+import {Link} from "react-router-dom";
 
 type WorkoutCardProps = {
     workout: Workout
@@ -12,11 +13,15 @@ export default function WorkoutCard(props: WorkoutCardProps) {
 
     }
 
+
     return (
         <div className={"workout-card"}>
             <h2>{props.workout.title}</h2>
             <p>{props.workout.description}</p>
-            <button className={"workout-delete"} onClick={handleDelete}>delete this workout</button>
+
+            <Link to={"/workouts/" + props.workout.id}>Details</Link>
+            <button className={"workout-delete"} onClick={handleDelete}>Delete this workout</button>
+
         </div>
     )
 }

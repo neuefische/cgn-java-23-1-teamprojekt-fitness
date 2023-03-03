@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {Workout} from "./model/Workout";
 import axios from "axios";
@@ -7,6 +6,7 @@ import Gallery from "./component/Gallery";
 import Header from "./component/Header";
 import AddWorkout from "./component/AddWorkout";
 import {Route, Routes} from "react-router-dom";
+import WorkoutDetails from "./component/WorkoutDetails";
 
 
 function App() {
@@ -47,9 +47,9 @@ function App() {
             <Header/>
             <Routes>
                 <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
-                <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout} />}/>
+                <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
+                <Route path={"/workouts/:id"} element={<WorkoutDetails/>}/>
             </Routes>
-
         </div>
     );
 }
