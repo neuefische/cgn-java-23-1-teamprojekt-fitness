@@ -4,7 +4,9 @@ import com.example.backend.model.Workout;
 import com.example.backend.model.WorkoutDTO;
 import com.example.backend.service.WorkoutService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -34,6 +36,11 @@ public class WorkoutController {
     @DeleteMapping("workouts/{id}")
     void deleteWorkout(@PathVariable String id) {
         workoutService.deleteWorkoutById(id);
+    }
+
+    @PutMapping("/workouts/{id}")
+    public Workout updateWorkout(@PathVariable String id, @RequestBody Workout workoutToChange){
+        return workoutService.updateWorkout(id, workoutToChange);
     }
 
 }
