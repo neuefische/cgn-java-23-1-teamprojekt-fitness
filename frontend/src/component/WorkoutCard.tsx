@@ -21,8 +21,7 @@ export default function WorkoutCard(props: WorkoutCardProps) {
             <p>{props.workout.id}</p>
             <Link to={"/workouts/" + props.workout.id}>Details</Link>
             <button className={"workout-delete"} onClick={handleDelete}>Delete this workout</button>
-            <button className={"button-header"}><Link className={"link-header"} to={"/workouts/{id}"}>Update Workout</Link></button>
-
+            <button className={"button-header"}><Link className={"link-header"} to={"/workouts/update/"+ props.workout.id}>Update Workout</Link></button>
         </div>
     )
 }

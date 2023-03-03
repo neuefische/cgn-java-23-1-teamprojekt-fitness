@@ -1,24 +1,23 @@
 import {Workout} from "../model/Workout";
 import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import axios from "axios";
+
 
 type UpdateWorkoutProps = {
 
-    updateWorkout: (workoutToUpdate: Workout) => Promise<void>
+    updateWorkout: (workoutToUpdate: Workout) => void
+
 
 
 }
 
 export default function UpdateWorkout(props: UpdateWorkoutProps) {
 
-    const params1 = useParams();
-    const id: string | undefined = params1.id;
-
-
-
+    const params =useParams()
+    const id: string | undefined = params.id
+    
     const [workoutToUpdate, setWorkoutToUpdate] = useState<Workout>({
-        id: "",
+        id: id?id:"",
         description: "",
         title: "",
     });

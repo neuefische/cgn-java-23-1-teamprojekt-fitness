@@ -57,7 +57,7 @@ function App() {
                 <Route path={"/"} element={<Gallery workouts={workout}  deleteWorkout={deleteWorkout}/>}/>
                 <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
                 <Route path={"/workouts/:id"} element={<WorkoutDetails/>}/>
-                <Route path={"/workouts/:id"}  element={<UpdateWorkout  updateWorkout={updateWorkout}/>}/>
+                <Route path={"/workouts/update/:id"}  element={<UpdateWorkout  updateWorkout={updateWorkout}/>}/>
             </Routes>
         </div>
     );
