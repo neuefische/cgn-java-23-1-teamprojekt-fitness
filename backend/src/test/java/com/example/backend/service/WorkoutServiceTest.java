@@ -2,6 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.model.Workout;
 import com.example.backend.repo.WorkoutRepo;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
