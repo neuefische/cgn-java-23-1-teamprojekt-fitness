@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .httpBasic().and()
                 .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/api/user/me").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/workout").permitAll()
                 .requestMatchers("/api/**").authenticated()
