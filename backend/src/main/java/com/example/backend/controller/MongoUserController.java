@@ -38,6 +38,16 @@ public class MongoUserController {
         return mongoUserRepository.save(mongoUser);
     }
 
+    @GetMapping("/admin")
+    public String getAdminStatus () {
+        return "Admin OK";
+    }
+    @GetMapping
+    public String getStatus() {
+        return "OK";
+    }
+
+
 
 
 }
