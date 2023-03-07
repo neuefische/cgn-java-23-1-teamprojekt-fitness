@@ -15,20 +15,15 @@ export default function SignUpPage () {
         <div style={{padding: "5rem 0"}}>
             <form onSubmit={e => {
                 e.preventDefault();
-                axios
-                    .get("/api/csrf")
-                    .then(() => {
-                       return axios.post("/api/user", {
-                            username,
-                            password
-                        }, {
-                            headers: {"X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN")}
-                        })
-                    }).then(() => {
+                axios.post("/api/user", {
+                    username,
+                    password
+                }).then(() => {
                     navigate("/sign-in");
-                }).catch(console.error);
-                }
-            }>
+                }).catch(err => {
+                    alert(err.response.data.error);
+                });
+            }}>
                 <div>
                     <label>
                         Username

@@ -55,13 +55,35 @@ public class MongoUserController {
         );
     }
 
-    @GetMapping("/me")
-    public String getMe1(Principal principal) {
-        if (principal != null) {
-            return principal.getName();
-        }
-        return "AnonymousUser";
+    @PostMapping("/login")
+    public MongoUser login (Principal principal) {
+        return getMe1(principal);
     }
+
+    @GetMapping("/me")
+    public MongoUser getMe1(Principal principal) {
+        MongoUser me = mongoUserRepository
+                .findByUsername(principal.getName())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
+
+        return new MongoUser(
+                me.id(),
+                me.username(),
+                null,
+                me.role()
+        );
+    }
+
+    @GetMapping("/me2")
+    public String getMe2() {
+        return SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+    }
+
+
+
 
     /*@GetMapping("/me2")
     public String getMe2() {

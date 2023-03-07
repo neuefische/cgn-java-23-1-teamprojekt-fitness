@@ -8,12 +8,22 @@ import AddWorkout from "./component/AddWorkout";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import WorkoutDetails from "./component/WorkoutDetails";
 import SignUpPage from "./model/SignUpPage";
+import Cookies from "js-cookie";
 
 
 
 function App() {
 
     const [workout, setWorkout] = useState<Workout[]>([])
+
+    axios.interceptors.request.use(function (config) {
+        return fetch("/api/csrf").then(() => {
+            config.headers["X-XSRF-TOKEN"] = Cookies.get("XSRF-TOKEN");
+            return config;
+        });
+    }, function (error) {
+        return Promise.reject(error);
+    });
 
     function fetchWorkouts() {
         axios.get("/api/workouts")
