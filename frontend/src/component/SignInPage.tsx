@@ -1,28 +1,26 @@
-
-import React, {useState} from "react";
-import axios from "axios";
+import React from "react";
 import {useNavigate} from "react-router-dom";
-import Cookies from "js-cookie";
+import axios from "axios";
 
-
-
-export default function SignUpPage () {
-    const [username, setUsername] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+export default function SignInPage () {
+    const [username, setUsername] = React.useState<string>("");
+    const [password, setPassword] = React.useState<string>("");
     const navigate = useNavigate();
 
     return (
         <div style={{padding: "5rem 0"}}>
-
             <h1>Sign In</h1>
 
             <form onSubmit={e => {
                 e.preventDefault();
-                axios.post("/api/user", {
-                    username,
-                    password
+                axios.post("/api/user/login", {}, {
+                    headers: {
+                        Authorization: `Basic ${window.btoa(`${username}:${password}`)}`
+                    }
                 }).then(() => {
-                    navigate("/sign-in");
+                    const redirect = window.sessionStorage.getItem("signInRedirect") || "/";
+                    window.sessionStorage.removeItem("signInRedirect");
+                    navigate(redirect);
                 }).catch(err => {
                     alert(err.response.data.error);
                 });
@@ -49,7 +47,7 @@ export default function SignUpPage () {
                     </label>
                 </div>
 
-                <button type="submit">Sign Up</button>
+                <button type="submit">Sign In</button>
             </form>
         </div>
     );

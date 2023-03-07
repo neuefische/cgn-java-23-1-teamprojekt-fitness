@@ -9,6 +9,7 @@ import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import WorkoutDetails from "./component/WorkoutDetails";
 import SignUpPage from "./model/SignUpPage";
 import Cookies from "js-cookie";
+import SignInPage from "./component/SignInPage";
 
 
 
@@ -59,8 +60,10 @@ function App() {
         <div className="App">
 
             <Header/>
-                <Link to={"/sign-up"}>Sign Up</Link>
+                <Link to={"/sign-up"}>Sign Up</Link> &nbsp; <Link to={"/sign-in"}>Sign In</Link>
+
             <Routes>
+                <Route path={"/sign-in"} element={<SignInPage/>}/>
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
                 <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
                 <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
