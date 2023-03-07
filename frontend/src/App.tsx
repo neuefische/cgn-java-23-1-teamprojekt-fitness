@@ -5,8 +5,10 @@ import axios from "axios";
 import Gallery from "./component/Gallery";
 import Header from "./component/Header";
 import AddWorkout from "./component/AddWorkout";
-import {Route, Routes} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import WorkoutDetails from "./component/WorkoutDetails";
+import SignUpPage from "./model/SignUpPage";
+
 
 
 function App() {
@@ -34,8 +36,9 @@ function App() {
 
     function addWorkout(workoutToAdd: Workout) {
         axios.post("/api/workouts", workoutToAdd)
-            .then(() => {
-                fetchWorkouts();
+            .then((response) => {
+                //fetchWorkouts();
+                setWorkout([...workout, response.data])
             })
             .catch((error) => {
                 console.error("I'm sorry. Something went wrong!" + error)
@@ -44,12 +47,16 @@ function App() {
 
     return (
         <div className="App">
+
             <Header/>
+                <Link to={"/sign-up"}>Sign Up</Link>
             <Routes>
+                <Route path={"/sign-up"} element={<SignUpPage/>}/>
                 <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
                 <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
                 <Route path={"/workouts/:id"} element={<WorkoutDetails/>}/>
             </Routes>
+
         </div>
     );
 }

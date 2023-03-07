@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()))
                 .and()
                 .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/api/csrf").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/status/admin").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/user/me").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
