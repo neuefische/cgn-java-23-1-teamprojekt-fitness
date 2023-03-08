@@ -3,6 +3,7 @@ import WorkoutCard from "./WorkoutCard";
 import "./Gallery.css"
 import {useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import Layout from "./Layout";
 
 type GalleryProps = {
 
@@ -17,11 +18,15 @@ export default function Gallery(props: GalleryProps) {
             return (
                 <WorkoutCard workout={workout} key={workout.id} deleteWorkout={props.deleteWorkout}/>)
         })
-    return !user ? null : (
+    return (
+        <Layout>
+            {!user ? null : (
 
         <div className="Gallery-Workouts">
             {workouts}
         </div>
+    )}
+        </Layout>
     )
 
 

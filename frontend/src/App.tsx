@@ -10,6 +10,7 @@ import WorkoutDetails from "./component/WorkoutDetails";
 import SignUpPage from "./model/SignUpPage";
 import Cookies from "js-cookie";
 import SignInPage from "./component/SignInPage";
+import LogOut from "./component/Logout";
 
 
 
@@ -60,7 +61,6 @@ function App() {
         <div className="App">
 
             <Header/>
-                <Link to={"/sign-up"}>Sign Up</Link> &nbsp; <Link to={"/sign-in"}>Sign In</Link>
 
             <Routes>
                 <Route path={"/sign-in"} element={<SignInPage/>}/>
@@ -68,6 +68,7 @@ function App() {
                 <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
                 <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
                 <Route path={"/workouts/:id"} element={<WorkoutDetails/>}/>
+                <Route path={"/logout"} element={<LogOut/>}/>
             </Routes>
 
         </div>

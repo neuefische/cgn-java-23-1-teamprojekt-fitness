@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
+import Layout from "../component/Layout";
 
 
 
@@ -12,6 +13,7 @@ export default function SignUpPage () {
     const navigate = useNavigate();
 
     return (
+        <Layout>
         <div style={{padding: "5rem 0"}}>
 
             <h1>Sign In</h1>
@@ -52,5 +54,6 @@ export default function SignUpPage () {
                 <button type="submit">Sign Up</button>
             </form>
         </div>
+        </Layout>
     );
 }

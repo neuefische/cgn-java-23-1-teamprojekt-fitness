@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.model.MongoUser;
 import com.example.backend.repo.MongoUserRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -60,6 +61,12 @@ public class MongoUserController {
         return getMe1(principal);
     }
 
+    @PostMapping("/logout")
+    public void logout (HttpSession session){
+        session.invalidate();
+        SecurityContextHolder.clearContext();
+    }
+
     @GetMapping("/me")
     public MongoUser getMe1(Principal principal) {
         MongoUser me = mongoUserRepository
@@ -82,17 +89,6 @@ public class MongoUserController {
                 .getName();
     }
 
-
-
-
-    /*@GetMapping("/me2")
-    public String getMe2() {
-        return SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getName();
-    }
-    */
 
 
     @GetMapping("/admin")

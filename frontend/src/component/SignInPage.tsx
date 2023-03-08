@@ -1,6 +1,7 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import Layout from "./Layout";
 
 export default function SignInPage () {
     const [username, setUsername] = React.useState<string>("");
@@ -8,6 +9,7 @@ export default function SignInPage () {
     const navigate = useNavigate();
 
     return (
+        <Layout>
         <div style={{padding: "5rem 0"}}>
             <h1>Sign In</h1>
 
@@ -50,5 +52,6 @@ export default function SignInPage () {
                 <button type="submit">Sign In</button>
             </form>
         </div>
+        </Layout>
     );
 }
