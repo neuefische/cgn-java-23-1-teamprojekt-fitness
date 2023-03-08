@@ -1,0 +1,28 @@
+.text-input {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    flex-direction: column;
+
+}
+
+.large-input {
+    width: 300px;
+    height: 150px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.text-input:focus,.large-input{
+    outline: none;
+    border-color: darkgreen;
+    box-shadow: 0 0 5px #0077ff;
+}

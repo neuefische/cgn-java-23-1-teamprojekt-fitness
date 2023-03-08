@@ -1,6 +1,5 @@
 package com.example.backend.service;
 
-import com.example.backend.model.WorkoutDTO;
 import com.example.backend.repo.WorkoutRepo;
 import lombok.AllArgsConstructor;
 import com.example.backend.model.Workout;
@@ -56,11 +55,5 @@ public class WorkoutService {
 
     }
 
-   /* public Workout updateWorkout2(String id, Workout updatedWorkout) {
-        Workout workoutToDelete = getWorkoutByID(id).orElseThrow(NoSuchElementException::new);
-        workoutrepo.delete(workoutToDelete);
-        workoutrepo.save(updatedWorkout = new Workout(id, updatedWorkout.title(), updatedWorkout.description()));
-        return updatedWorkout;
-    }*/
 }
 
