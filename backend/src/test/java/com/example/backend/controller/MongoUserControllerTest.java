@@ -159,7 +159,7 @@ class MongoUserControllerTest {
 
     @Test
     @WithMockUser(username = "user", password = "password")
-    public void testGetMe2() throws Exception {
+    void testGetMe2() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me2")
                 .with(csrf()))
                 .andExpect(status().isOk())
@@ -169,7 +169,7 @@ class MongoUserControllerTest {
 
     @Test
     @WithMockUser(username = "user", password = "password")
-    public void testGetAdminStatus() throws Exception {
+    void testGetAdminStatus() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/admin"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Admin OK"));
@@ -177,9 +177,8 @@ class MongoUserControllerTest {
 
     @Test
     @WithMockUser(username = "user", password = "password")
-    public void testGetStatus() throws Exception {
+    void testGetStatus() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user"))
-
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
