@@ -1,7 +1,6 @@
 import {Workout} from "../model/Workout";
 import WorkoutCard from "./WorkoutCard";
 import "./Gallery.css"
-import {useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Layout from "./Layout";
 

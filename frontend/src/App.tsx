@@ -5,7 +5,7 @@ import axios from "axios";
 import Gallery from "./component/Gallery";
 import Header from "./component/Header";
 import AddWorkout from "./component/AddWorkout";
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import WorkoutDetails from "./component/WorkoutDetails";
 import SignUpPage from "./model/SignUpPage";
 import Cookies from "js-cookie";
@@ -49,7 +49,6 @@ function App() {
     function addWorkout(workoutToAdd: Workout) {
         axios.post("/api/workouts", workoutToAdd)
             .then((response) => {
-                //fetchWorkouts();
                 setWorkout([...workout, response.data])
             })
             .catch((error) => {
