@@ -3,7 +3,7 @@
 
 
 import axios from "axios";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 type User = {
@@ -13,6 +13,10 @@ type User = {
 }
 
 export default function useAuth (redirectToSignIn?: boolean) {
+
+
+    const [username, setUsername] = React.useState<string>("");
+    const [password, setPassword] = React.useState<string>("");
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
     const {pathname} = useLocation();
