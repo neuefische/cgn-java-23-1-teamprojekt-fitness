@@ -54,6 +54,8 @@ class MongoUserControllerTest {
                 .andExpect(status().isOk());
     }
 
+
+
     @Test
     void getStatus401ifUserIsNotAuthenticatedAdmin() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/admin")
@@ -62,5 +64,58 @@ class MongoUserControllerTest {
     }
 
 
+    @Test
+    void createUserWithoutUsername_ThenBadRequest400() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "username": "",
+                                    "password": "test"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().isBadRequest());
+    }
 
-}
+    @Test
+    void createUserWithoutPassword_ThenBadRequest400() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "username": "test",
+                                    "password": ""
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void createUser_UserAlreadyExists() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "username": "test",
+                                    "password": "test"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "username": "test",
+                                    "password": "test"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().isConflict());
+    }
+    }
+    
+
+
