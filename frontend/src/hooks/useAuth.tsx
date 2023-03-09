@@ -32,5 +32,5 @@ export default function useAuth (redirectToSignIn?: boolean) {
         });
     }, [pathname, navigate, redirectToSignIn]);
 
-    return user;
+    return {user,username,password,setUsername,setPassword};
 }

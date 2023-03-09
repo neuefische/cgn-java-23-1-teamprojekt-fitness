@@ -2,10 +2,11 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Layout from "./Layout";
+import useAuth from "../hooks/useAuth";
 
 export default function SignInPage () {
-    const [username, setUsername] = React.useState<string>("");
-    const [password, setPassword] = React.useState<string>("");
+
+    const {username,password,setUsername,setPassword} =useAuth(true) ;
     const navigate = useNavigate();
 
     return (
