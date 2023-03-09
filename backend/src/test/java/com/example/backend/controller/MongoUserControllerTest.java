@@ -54,6 +54,13 @@ class MongoUserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    void getStatus401ifUserIsNotAuthenticatedAdmin() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/admin")
+                        .with(csrf()))
+                .andExpect(status().isUnauthorized());
+    }
+
 
 
 }
