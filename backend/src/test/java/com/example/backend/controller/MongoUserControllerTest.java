@@ -115,7 +115,50 @@ class MongoUserControllerTest {
                         .with(csrf()))
                 .andExpect(status().isConflict());
     }
+
+    @Test
+    @WithMockUser(username = "user", password = "password")
+    void loginUserWithValidUsernameAndPassword_Then200() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "username": "user",
+                                    "password": "password"
+                                }
+                                """));
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user")
+                        .with(csrf()))
+                .andExpect(status().isOk());
     }
-    
+
+    @Test
+    void loginUserWithInvalidUsernameAndPassword_Then401() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                                {
+                                    "username": "lolll",
+                                    "password": "passworddd"
+                                }
+                                """))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(username = "user", password = "password")
+    void logoutUser_Then200() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/logout")
+                        .with(csrf()))
+                .andExpect(status().isOk());
+
+    }
+
+
+
+    }
+
 
 
