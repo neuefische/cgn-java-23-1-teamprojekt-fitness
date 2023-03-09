@@ -10,7 +10,7 @@ public class CsrfController {
 
 
 
-        @GetMapping
+        @GetMapping()
         public String getCsrf() {
             return "CSRF OK";
         }
