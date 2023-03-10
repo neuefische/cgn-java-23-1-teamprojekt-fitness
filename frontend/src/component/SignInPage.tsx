@@ -14,6 +14,7 @@ export default function SignInPage (props: SignInPageProps) {
     const navigate = useNavigate();
 
     const handleSignIn = (username: string, password: string) => {
+        const btoaString = `${username}:${password}`
         axios
             .post(
                 "/api/user/login",
