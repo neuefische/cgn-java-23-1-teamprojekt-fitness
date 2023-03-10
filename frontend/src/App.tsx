@@ -7,7 +7,7 @@ import Header from "./component/Header";
 import AddWorkout from "./component/AddWorkout";
 import {Route, Routes} from "react-router-dom";
 import WorkoutDetails from "./component/WorkoutDetails";
-import SignUpPage from "./model/SignUpPage";
+import SignUpPage from "./component/SignUpPage";
 import Cookies from "js-cookie";
 import SignInPage from "./component/SignInPage";
 import LogOut from "./component/Logout";

@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import Layout from "../component/Layout";
+import Layout from "./Layout";
 import useAuth from "../hooks/useAuth";
 
 
