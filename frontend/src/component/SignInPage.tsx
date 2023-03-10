@@ -19,12 +19,9 @@ export default function SignInPage (props: SignInPageProps) {
                 "/api/user/login",
                 {},
                 {
-                    headers: {
-                        Authorization: `Basic ${window.btoa(`${username}:${password}`)}`,
-                    },
-                }
-            )
-            .then(() => {
+                       headers: {Authorization: `Basic ${window.btoa(btoaString)}`}
+                    })
+                .then(() => {
                 const redirect =
                     window.sessionStorage.getItem("signInRedirect") || "/";
                 window.sessionStorage.removeItem("signInRedirect");
