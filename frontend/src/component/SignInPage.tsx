@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Layout from "./Layout";
 import AuthForm from "../component/AuthForm";
-import useAuth from "../hooks/useAuth";
 
 
 type SignInPageProps = {
@@ -13,7 +12,6 @@ type SignInPageProps = {
 
 export default function SignInPage (props: SignInPageProps) {
     const navigate = useNavigate();
-    const { setUsername, setPassword, username, password } = useAuth(true);
 
     const handleSignIn = (username: string, password: string) => {
         axios

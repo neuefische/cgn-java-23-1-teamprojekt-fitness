@@ -3,7 +3,6 @@ import React from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Layout from "./Layout";
-import useAuth from "../hooks/useAuth";
 import AuthForm from "../component/AuthForm";
 
 export default function SignUpPage () {
