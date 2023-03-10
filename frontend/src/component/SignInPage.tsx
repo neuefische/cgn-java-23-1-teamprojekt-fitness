@@ -4,7 +4,7 @@ import axios from "axios";
 import Layout from "./Layout";
 import AuthForm from "../component/AuthForm";
 import useAuth from "../hooks/useAuth";
-import App from "../App";
+
 
 type SignInPageProps = {
     fetchWorkouts:() => void;

@@ -1,5 +1,5 @@
 
-import React, {useState} from "react";
+import React from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Layout from "./Layout";
@@ -8,7 +8,6 @@ import AuthForm from "../component/AuthForm";
 
 export default function SignUpPage () {
     const navigate = useNavigate();
-    const { setUsername, setPassword, username, password } = useAuth(true);
 
     const handleSignUp = (username: string, password: string) => {
         axios
