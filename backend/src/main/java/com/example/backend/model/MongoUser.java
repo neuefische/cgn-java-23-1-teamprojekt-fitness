@@ -6,5 +6,6 @@ public record MongoUser(
         String username,
         String password,
         String role
+
 ) {
 }
