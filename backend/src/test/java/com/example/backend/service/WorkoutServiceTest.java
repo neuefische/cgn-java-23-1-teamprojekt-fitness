@@ -102,6 +102,18 @@ class WorkoutServiceTest {
         verify(workoutRepo).existsById(workout1.id());
         Assertions.assertEquals(expected,actual);
     }
+
+    @Test
+    void checkUpdateWorkoutWithNotExistingId(){
+        //GIVEN
+        when(workoutRepo.existsById(workout1.id())).thenReturn(false);
+
+        //WHEN
+        assertThrows(NoSuchElementException.class, () -> workoutService.updateWorkout(workout1.id(), workout1));
+
+        //THEN
+        verify(workoutRepo).existsById(workout1.id());
+    }
 }
 
 
