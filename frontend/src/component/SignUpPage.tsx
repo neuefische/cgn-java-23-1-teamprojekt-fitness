@@ -24,8 +24,7 @@ export default function SignUpPage () {
             <AuthForm
                 title="Sign Up"
                 buttonText="Sign Up"
-                onSubmit={handleSignUp}
-            />
+                onSubmit={handleSignUp}/>
         </Layout>
     );
 }

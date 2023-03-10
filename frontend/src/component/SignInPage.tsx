@@ -39,8 +39,7 @@ export default function SignInPage (props: SignInPageProps) {
             <AuthForm
                 title="Sign In"
                 buttonText="Sign In"
-                onSubmit={handleSignIn}
-            />
+                onSubmit={handleSignIn}/>
         </Layout>
     );
 }

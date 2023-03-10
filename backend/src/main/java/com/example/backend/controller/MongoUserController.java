@@ -89,8 +89,6 @@ public class MongoUserController {
                 .getName();
     }
 
-
-
     @GetMapping("/admin")
     public String getAdminStatus () {
         return "Admin OK";
@@ -99,8 +97,4 @@ public class MongoUserController {
     public String getStatus() {
         return "OK";
     }
-
-
-
-
 }
