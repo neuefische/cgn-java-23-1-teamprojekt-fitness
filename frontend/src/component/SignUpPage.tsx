@@ -6,8 +6,6 @@ import Layout from "./Layout";
 import useAuth from "../hooks/useAuth";
 import AuthForm from "../component/AuthForm";
 
-
-
 export default function SignUpPage () {
     const navigate = useNavigate();
     const { setUsername, setPassword, username, password } = useAuth(true);

@@ -62,7 +62,7 @@ function App() {
             <Header/>
 
             <Routes>
-                <Route path={"/sign-in"} element={<SignInPage/>}/>
+                <Route path={"/sign-in"} element={<SignInPage fetchWorkouts={fetchWorkouts}/> } />
                 <Route path={"/sign-up"} element={<SignUpPage/>}/>
                 <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
                 <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
