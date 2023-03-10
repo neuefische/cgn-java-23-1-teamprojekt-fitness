@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 type WorkoutCardProps = {
     workout: Workout
     deleteWorkout: (id: string) => void
-   //updateWorkout:(id:string)=> void
 }
 
 export default function WorkoutCard(props: WorkoutCardProps) {
@@ -18,10 +17,9 @@ export default function WorkoutCard(props: WorkoutCardProps) {
         <div className={"workout-card"}>
             <h2>{props.workout.title}</h2>
             <p>{props.workout.description}</p>
-            <p>{props.workout.id}</p>
-            <Link to={"/workouts/" + props.workout.id}>Details</Link>
+            <Link  to={"/workouts/" + props.workout.id}>Details</Link>
             <button className={"workout-delete"} onClick={handleDelete}>Delete this workout</button>
-            <button className={"button-header"}><Link className={"link-header"} to={"/workouts/update/"+ props.workout.id}>Update Workout</Link></button>
+            <button className={"workout-delete"}><Link className={"link-header"} to={"/workouts/update/"+ props.workout.id}>Update Workout</Link></button>
         </div>
     )
 }

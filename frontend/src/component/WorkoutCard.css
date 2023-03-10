@@ -10,6 +10,7 @@
 .workout-delete {
     background-color: lightseagreen;
     border-radius: 18px;
+    margin: 5px;
 
 }
 .workout-card-Details{
@@ -30,3 +31,4 @@
     justify-content: center;
 
 }
+
