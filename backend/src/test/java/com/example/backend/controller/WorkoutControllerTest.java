@@ -90,4 +90,23 @@ class WorkoutControllerTest {
                 )
                 .andExpect(jsonPath("$.id").isNotEmpty());
     }
+
+    @Test
+    @DirtiesContext
+    void checkUpdateWorkout() throws Exception {
+        workoutRepo.save(workout1);
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/workouts/" + "1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                "id":"1", "description":"walken", "title":"walken"
+                                } 
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                        "id":"1", "description":"walken", "title":"walken"
+                        }
+                        """));
+    }
 }

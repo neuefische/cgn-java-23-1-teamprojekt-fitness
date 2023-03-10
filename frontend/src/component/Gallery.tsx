@@ -7,6 +7,7 @@ type GalleryProps = {
     workouts: Workout[]
     deleteWorkout: (id: string) => void
 
+
 }
 export default function Gallery(props: GalleryProps) {
     const workouts = props.workouts

@@ -1,15 +1,23 @@
 .workout-card {
     width: 230px;
     height: 350px;
-    margin: 1%;
     border: 1px solid black;
     border-radius: 18px;
-    background-color: lightseagreen;
+    background-color:lightseagreen ;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin: 10px;
+
+
+
 }
 
 .workout-delete {
     background-color: lightseagreen;
     border-radius: 18px;
+    margin: 5px;
 
 }
 .workout-card-Details{
@@ -30,3 +38,4 @@
     justify-content: center;
 
 }
+

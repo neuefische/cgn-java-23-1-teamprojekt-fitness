@@ -2,6 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.model.Workout;
 import com.example.backend.repo.WorkoutRepo;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -84,6 +85,34 @@ class WorkoutServiceTest {
         //THEN
         verify(workoutRepo).save(expectedWorkout);
         assertEquals(expectedWorkout, workout);
+    }
+
+    @Test
+    void checkUpdateWorkout(){
+        //GIVEN
+        when(workoutRepo.existsById(workout1.id())).thenReturn(true);
+        when(workoutRepo.save(workout1)).thenReturn(workout1);
+
+        //WHEN
+        Workout actual = workoutService.updateWorkout(workout1.id(), workout1);
+        Workout expected=workout1;
+
+        //THEN
+        verify(workoutRepo).save(workout1);
+        verify(workoutRepo).existsById(workout1.id());
+        Assertions.assertEquals(expected,actual);
+    }
+
+    @Test
+    void checkUpdateWorkoutWithNotExistingId(){
+        //GIVEN
+        when(workoutRepo.existsById(workout1.id())).thenReturn(false);
+
+        //WHEN
+        assertThrows(NoSuchElementException.class, () -> workoutService.updateWorkout(workout1.id(), workout1));
+
+        //THEN
+        verify(workoutRepo).existsById(workout1.id());
     }
 }
 

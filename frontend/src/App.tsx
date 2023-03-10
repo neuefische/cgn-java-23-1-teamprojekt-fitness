@@ -7,6 +7,7 @@ import Header from "./component/Header";
 import AddWorkout from "./component/AddWorkout";
 import {Route, Routes} from "react-router-dom";
 import WorkoutDetails from "./component/WorkoutDetails";
+import UpdateWorkout from "./component/UpdateWorkout";
 
 
 function App() {
@@ -42,13 +43,21 @@ function App() {
             });
     }
 
+    function updateWorkout(workout: Workout) {
+        axios.put("/api/workouts/" + workout.id, workout)
+            .then(fetchWorkouts)
+            .catch(console.error);
+    }
+
+
     return (
         <div className="App">
             <Header/>
             <Routes>
-                <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
+                <Route path={"/"} element={<Gallery workouts={workout}  deleteWorkout={deleteWorkout}/>}/>
                 <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
                 <Route path={"/workouts/:id"} element={<WorkoutDetails/>}/>
+                <Route path={"/workouts/update/:id"}  element={<UpdateWorkout  workout={workout}  updateWorkout={updateWorkout}/>}/>
             </Routes>
         </div>
     );

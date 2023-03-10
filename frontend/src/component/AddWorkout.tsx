@@ -1,5 +1,6 @@
 import {Workout} from "../model/Workout";
 import {ChangeEvent, useState} from "react";
+import "./UpdateWorkout.css";
 
 type AddWorkoutProps = {
     addWorkout: (workoutToAdd: Workout) => void,
@@ -38,9 +39,9 @@ export default function AddWorkout(props: AddWorkoutProps) {
     }
 
     return (
-        <div>
-            Title: <input value={workoutToAdd.title} onChange={handleChangeTitle}/>
-            Description: <input value={workoutToAdd.description} onChange={handleChangeDescription}/>
+        <div className={"row"}>
+            <input className={"text-input"} value={workoutToAdd.title} onChange={handleChangeTitle} placeholder={"title"}/>
+            <input className={"large-input"} value={workoutToAdd.description} onChange={handleChangeDescription} placeholder={"description"}/>
             <button onClick={handleClickAddWorkout}>Add your Workout</button>
         </div>
     );
