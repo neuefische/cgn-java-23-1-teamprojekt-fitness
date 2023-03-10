@@ -16,7 +16,6 @@ export default function Layout ({children}: Props) {
                     <Link to={"/sign-up"}>Sign Up</Link> &nbsp; <Link to={"/sign-in"}>Sign In</Link> &nbsp; <LogOut/>
                 </div>
             )}
-
             <div>
                 {children}
             </div>

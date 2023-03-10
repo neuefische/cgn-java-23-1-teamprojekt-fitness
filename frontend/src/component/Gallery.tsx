@@ -19,14 +19,11 @@ export default function Gallery(props: GalleryProps) {
         })
     return (
         <Layout>
-            {!user ? null : (
-
+            {!user ? <p>Loading...</p> : (
         <div className="Gallery-Workouts">
             {workouts}
         </div>
     )}
         </Layout>
     )
-
-
 }

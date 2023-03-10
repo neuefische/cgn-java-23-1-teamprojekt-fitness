@@ -57,6 +57,7 @@ class MongoUserControllerTest {
 
 
     @Test
+    @DirtiesContext
     void getStatus401ifUserIsNotAuthenticatedAdmin() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/admin")
                         .with(csrf()))
@@ -65,6 +66,7 @@ class MongoUserControllerTest {
 
 
     @Test
+    @DirtiesContext
     void createUserWithoutUsername_ThenBadRequest400() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -79,6 +81,7 @@ class MongoUserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void createUserWithoutPassword_ThenBadRequest400() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -93,6 +96,7 @@ class MongoUserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void createUser_UserAlreadyExists() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -117,6 +121,7 @@ class MongoUserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void loginUserWithValidUsernameAndPassword_Then200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")
@@ -134,6 +139,7 @@ class MongoUserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void loginUserWithInvalidUsernameAndPassword_Then401() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")
                         .with(csrf())
@@ -149,6 +155,7 @@ class MongoUserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void logoutUser_Then200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/logout")
@@ -158,6 +165,7 @@ class MongoUserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void testGetMe2() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me2")
@@ -168,6 +176,7 @@ class MongoUserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void testGetAdminStatus() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/admin"))
@@ -176,6 +185,7 @@ class MongoUserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     @WithMockUser(username = "user", password = "password")
     void testGetStatus() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user"))
