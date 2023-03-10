@@ -7,7 +7,6 @@ import AuthForm from "../component/AuthForm";
 
 type SignInPageProps = {
     fetchWorkouts:() => void;
-
 }
 
 export default function SignInPage (props: SignInPageProps) {
