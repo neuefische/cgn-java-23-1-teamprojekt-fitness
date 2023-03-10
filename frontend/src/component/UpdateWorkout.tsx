@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 type UpdateWorkoutProps = {
-
+    workout:Workout[]
     updateWorkout: (workoutToUpdate: Workout) => void
 
 }
