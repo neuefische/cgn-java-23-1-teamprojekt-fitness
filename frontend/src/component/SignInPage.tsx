@@ -4,8 +4,14 @@ import axios from "axios";
 import Layout from "./Layout";
 import AuthForm from "../component/AuthForm";
 import useAuth from "../hooks/useAuth";
+import App from "../App";
 
-export default function SignInPage () {
+type SignInPageProps = {
+    fetchWorkouts:() => void;
+
+}
+
+export default function SignInPage (props: SignInPageProps) {
     const navigate = useNavigate();
     const { setUsername, setPassword, username, password } = useAuth(true);
 
@@ -25,6 +31,7 @@ export default function SignInPage () {
                     window.sessionStorage.getItem("signInRedirect") || "/";
                 window.sessionStorage.removeItem("signInRedirect");
                 navigate(redirect);
+                props.fetchWorkouts();
             })
             .catch((err) => {
                 alert(err.response.data.error);
