@@ -1,8 +1,9 @@
-import {Workout} from "../model/Workout";
+
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import "./WorkoutCard.css";
+import {Workout} from "../model/Workout";
 
 
 export default function DetailsWorkout() {
@@ -37,5 +38,4 @@ export default function DetailsWorkout() {
         </div>
         </body>
     )
-
 }

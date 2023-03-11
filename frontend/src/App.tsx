@@ -11,6 +11,7 @@ import SignUpPage from "./component/SignUpPage";
 import Cookies from "js-cookie";
 import SignInPage from "./component/SignInPage";
 import LogOut from "./component/Logout";
+import UpdateWorkout from "./component/UpdateWorkout";
 
 
 
@@ -37,6 +38,11 @@ function App() {
 
     function deleteWorkout(id: string) {
         axios.delete("/api/workouts/" + id)
+            .then(fetchWorkouts)
+            .catch(console.error);
+    }
+    function updateWorkout(workout: Workout) {
+        axios.put("/api/workouts/" + workout.id, workout)
             .then(fetchWorkouts)
             .catch(console.error);
     }
@@ -67,6 +73,7 @@ function App() {
                 <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
                 <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
                 <Route path={"/workouts/:id"} element={<WorkoutDetails/>}/>
+                <Route path={"/workouts/update/:id"}  element={<UpdateWorkout  workout={workout}  updateWorkout={updateWorkout}/>}/>
                 <Route path={"/logout"} element={<LogOut/>}/>
             </Routes>
 
