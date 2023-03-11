@@ -1,6 +1,5 @@
 package com.example.backend.service;
 
-import com.example.backend.model.WorkoutDTO;
 import com.example.backend.repo.WorkoutRepo;
 import lombok.AllArgsConstructor;
 import com.example.backend.model.Workout;

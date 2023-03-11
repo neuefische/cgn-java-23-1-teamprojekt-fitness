@@ -7,11 +7,25 @@ import Header from "./component/Header";
 import AddWorkout from "./component/AddWorkout";
 import {Route, Routes} from "react-router-dom";
 import WorkoutDetails from "./component/WorkoutDetails";
+import SignUpPage from "./component/SignUpPage";
+import Cookies from "js-cookie";
+import SignInPage from "./component/SignInPage";
+import LogOut from "./component/Logout";
+
 
 
 function App() {
 
     const [workout, setWorkout] = useState<Workout[]>([])
+
+    axios.interceptors.request.use(function (config) {
+        return fetch("/api/csrf").then(() => {
+            config.headers["X-XSRF-TOKEN"] = Cookies.get("XSRF-TOKEN");
+            return config;
+        });
+    }, function (error) {
+        return Promise.reject(error);
+    });
 
     function fetchWorkouts() {
         axios.get("/api/workouts")
@@ -34,8 +48,8 @@ function App() {
 
     function addWorkout(workoutToAdd: Workout) {
         axios.post("/api/workouts", workoutToAdd)
-            .then(() => {
-                fetchWorkouts();
+            .then((response) => {
+                setWorkout([...workout, response.data])
             })
             .catch((error) => {
                 console.error("I'm sorry. Something went wrong!" + error)
@@ -44,12 +58,18 @@ function App() {
 
     return (
         <div className="App">
+
             <Header/>
+
             <Routes>
+                <Route path={"/sign-in"} element={<SignInPage fetchWorkouts={fetchWorkouts}/> } />
+                <Route path={"/sign-up"} element={<SignUpPage/>}/>
                 <Route path={"/"} element={<Gallery workouts={workout} deleteWorkout={deleteWorkout}/>}/>
                 <Route path={"/workouts/add"} element={<AddWorkout addWorkout={addWorkout}/>}/>
                 <Route path={"/workouts/:id"} element={<WorkoutDetails/>}/>
+                <Route path={"/logout"} element={<LogOut/>}/>
             </Routes>
+
         </div>
     );
 }
