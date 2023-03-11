@@ -35,5 +35,10 @@ public class WorkoutController {
         workoutService.deleteWorkoutById(id);
     }
 
+    @PutMapping("/workouts/{id}")
+    public Workout updateWorkout(@PathVariable String id, @RequestBody Workout workoutToChange) {
+        return workoutService.updateWorkout(id, workoutToChange);
+    }
+
 }
 

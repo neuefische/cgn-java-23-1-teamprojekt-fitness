@@ -43,5 +43,16 @@ public class WorkoutService {
 
         }
     }
+    public Workout updateWorkout(String id, Workout workoutToChange) {
+        if (!workoutrepo.existsById(id)) {
+            throw new NoSuchElementException(id);
+        }
+        workoutrepo.deleteById(id);
+        Workout updateWorkout = new Workout(id, workoutToChange.description(), workoutToChange.title());
+
+        return workoutrepo.save(updateWorkout);
+
+    }
+
 }
 
