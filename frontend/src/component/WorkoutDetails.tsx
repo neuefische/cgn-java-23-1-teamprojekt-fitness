@@ -23,7 +23,7 @@ export default function DetailsWorkout() {
                 console.log(details);
             })
             .catch((error) => console.error(error));
-    });
+    }, [requestURL]);
 
 
     if (!details) {

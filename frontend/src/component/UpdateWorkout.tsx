@@ -62,8 +62,8 @@ export default function UpdateWorkout(props: UpdateWorkoutProps) {
     return (
         <form onSubmit={onSave}>
             <div className={"row"}>
-                <input className={"text-input"} type="text" placeholder="title" value={workoutToUpdate.title} onChange={onChangeTitle}/>
-                <input className={"large-input"} type="text" placeholder="description" value={workoutToUpdate.description}
+                <input className={"text-input"} type="text" placeholder={workout?.title} value={workoutToUpdate.title} onChange={onChangeTitle}/>
+                <input className={"large-input"} type="text" placeholder={workout?.description} value={workoutToUpdate.description}
                        onChange={onChangeDescription}/>
             </div>
             <button onClick={onSave}>Update</button>
