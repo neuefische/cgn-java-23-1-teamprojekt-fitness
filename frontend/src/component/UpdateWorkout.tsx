@@ -1,5 +1,5 @@
 import {Workout} from "../model/Workout";
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import "./UpdateWorkout.css"
 import axios from "axios";
@@ -49,7 +49,8 @@ export default function UpdateWorkout(props: UpdateWorkoutProps) {
         })
     }
 
-    function onSave() {
+    function onSave(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault()
         props.updateWorkout(workoutToUpdate);
         setWorkoutToUpdate({
             ...workoutToUpdate,
@@ -66,7 +67,7 @@ export default function UpdateWorkout(props: UpdateWorkoutProps) {
                 <input className={"large-input"} type="text" placeholder={workout?.description} value={workoutToUpdate.description}
                        onChange={onChangeDescription}/>
             </div>
-            <button onClick={onSave}>Update</button>
+            <button>Update</button>
         </form>
 
     )

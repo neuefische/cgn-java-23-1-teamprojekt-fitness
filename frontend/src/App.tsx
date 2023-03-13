@@ -13,20 +13,19 @@ import SignInPage from "./component/SignInPage";
 import LogOut from "./component/Logout";
 import UpdateWorkout from "./component/UpdateWorkout";
 
-
+axios.interceptors.request.use(function (config) {
+    return fetch("/api/csrf").then(() => {
+        config.headers["X-XSRF-TOKEN"] = Cookies.get("XSRF-TOKEN");
+        return config;
+    });
+}, function (error) {
+    return Promise.reject(error);
+});
 
 function App() {
 
     const [workout, setWorkout] = useState<Workout[]>([])
 
-    axios.interceptors.request.use(function (config) {
-        return fetch("/api/csrf").then(() => {
-            config.headers["X-XSRF-TOKEN"] = Cookies.get("XSRF-TOKEN");
-            return config;
-        });
-    }, function (error) {
-        return Promise.reject(error);
-    });
 
     function fetchWorkouts() {
         axios.get("/api/workouts")
