@@ -7,7 +7,7 @@ export default function LogOut () {
     const location = useLocation();
 
     return user && (
-        <button onClick={() => {
+        <button className={"Layout"} onClick={() => {
             axios.post("/api/user/logout").then(() => {
                 window.sessionStorage.setItem(
                     "signInRedirect",

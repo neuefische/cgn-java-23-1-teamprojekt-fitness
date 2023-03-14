@@ -4,5 +4,7 @@
     border: black 2px solid;
     margin: 1px;
     justify-content: space-evenly;
+    background-color: antiquewhite;
+    min-height: 630px;
 
 }
